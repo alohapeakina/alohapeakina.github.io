@@ -1,9 +1,15 @@
+html {
+    font-size: 16px;
+}
 body {
-    background-color: black;
+    background-color: #1f2025;
     color:white;
     }
 header, main, nav, footer {
     text-align: center;
+}
+footer {
+    font-size: smaller;
 }
 nav a {
     padding: 15px;
@@ -13,7 +19,7 @@ nav a {
     color:white;
 }
 nav a.active {
-    color:red;
+    color:#d59311;
     font-weight: bold;
 }
 nav a:hover {
@@ -26,7 +32,7 @@ main {
     justify-content: center;
 }
 table {
-    margin: 0px auto;
+    /* margin: 0px auto; */
     padding-bottom: 20px;
 }
 td {
@@ -34,19 +40,23 @@ td {
     font-size: 1.3em;
 }
 td strong {
-    color: orange;
+    color: #f2d479;
 }
 #table-header {
-    background-color: #351a00;
+    background-color: #d54818;
 }
 .table-row {
     background-color: #004075;
 }
 ul {
     width: 500px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     text-align: left;
 }
 .hobby {
     color: yellow;
+}
+iframe {
+    display: block;
+    margin: 0 auto;
 }
