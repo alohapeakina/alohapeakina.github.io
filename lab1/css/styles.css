@@ -17,3 +17,7 @@ nav a:hover {
     font-size: 2em;
     transition: .9s;
 }
+main {
+    display: flex;
+    justify-content: center;
+}
