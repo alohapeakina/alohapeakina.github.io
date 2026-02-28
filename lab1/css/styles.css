@@ -1,61 +1,71 @@
 html {
     font-size: 16px;
 }
+
 body {
     background-color: #1f2025;
     color:white;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <300>;
-  font-style: normal;
-  font-variation-settings:
+    line-height: 1.5;
+    
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
     "wdth" 100;
 }
 
 h1 {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <300>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+    line-height: 1.2;
+
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
 }
+
 header, main, nav, footer {
     text-align: center;
 }
+
 footer {
     font-size: smaller;
 }
+
 nav a {
     padding: 15px;
     padding-bottom: 4px;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     text-decoration: none;
     color:white;
 }
+
 nav a.active {
     color:#d59311;
     font-weight: bold;
 }
+
 nav a:hover {
     border-bottom: 2px orange solid;
     font-size: 2em;
     transition: .9s;
 }
-main {
+main 
+{
     display: flex;
     justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
 }
+
 table {
-    /* margin: 0px auto; */
     padding-bottom: 20px;
 }
 td {
-    padding-right: 10px;
-    font-size: 1.3em;
+    padding: 8px 10px;
+    font-size: 1.3rem;
 }
 td strong {
     color: #f2d479;
@@ -68,15 +78,20 @@ td strong {
 }
 ul {
     width: 500px;
-    /* margin: 0 auto; */
+    margin: 0;
     text-align: left;
 }
 .hobby {
     color: yellow;
+    font-weight: 600;
+}
+ul li + li {
+    margin-top: 1rem;
 }
 iframe {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
     width: 640px;
     height: 1100px;
     border: 0px;
