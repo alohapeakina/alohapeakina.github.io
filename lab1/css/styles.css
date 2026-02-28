@@ -71,10 +71,13 @@ td strong {
     color: #f2d479;
 }
 #table-header {
-    background-color: #d54818;
+    background-color: #3a3d48;
 }
 .table-row {
-    background-color: #004075;
+    background-color: #24272e;
+}
+.table-row:hover {
+    background-color: #30333f;
 }
 ul {
     width: 500px;
