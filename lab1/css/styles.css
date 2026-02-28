@@ -77,4 +77,7 @@ ul {
 iframe {
     display: block;
     margin: 0 auto;
+    width: 640px;
+    height: 1100px;
+    border: 0px;
 }
