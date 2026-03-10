@@ -23,6 +23,10 @@ nav a {
     color:white;
 }
 
+a {
+    color:#d59311;
+}
+
 nav a.active {
     color:#d59311;
     font-weight: bold;
@@ -41,6 +45,36 @@ nav ul {
     gap: 10px;
 }
 
-footer, header, main, nav {
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 30px 25px;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.principles-card {
+    background: #2a2c33;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 3px solid #d59311;
+    transition: transform 0.3s ease;
+}
+
+.principles-card:hover {
+    transform:translateY(-5px);
+    background: #33363f;
+}
+
+.principle-card span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d59311;
+    display: block;
+    margin-bottom: 10px;
+}
+
+footer, header, main, nav, .values-header, h2 {
     text-align: center;
 }
