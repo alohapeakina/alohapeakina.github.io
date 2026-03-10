@@ -31,6 +31,16 @@ nav a.active {
 nav a:hover {
     border-bottom: 2px orange solid;
 }
-header, main, nav {
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer, header, main, nav {
     text-align: center;
 }
