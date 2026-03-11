@@ -1,6 +1,8 @@
 //Global variables
 let randomNumber;
+let MAX_ATTEMPTS = 7;
 let attempts = 0;
+let remainingAttempts = MAX_ATTEMPTS
 
 //Event listeners
 document.querySelector("#guessBtn").addEventListener("click",checkGuess);
@@ -50,7 +52,7 @@ function checkGuess() {
         gameOver();
     } else {
         document.querySelector("#guesses").textContent += guess + " ";
-        if (attempts == 7) {
+        if (attempts == MAX_ATTEMPTS) {
             feedback.textContent = "Sorry, you lost!";
             feedback.style.color = "red";
             gameOver();
