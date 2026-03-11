@@ -1,8 +1,10 @@
 //Global variables
 let randomNumber;
 let MAX_ATTEMPTS = 7;
-let attempts = 0;
-let remainingAttempts = MAX_ATTEMPTS
+let attempts;
+let remainingCount;
+let winCount = 0;
+let lossCount = 0;
 
 //Event listeners
 document.querySelector("#guessBtn").addEventListener("click",checkGuess);
@@ -14,6 +16,7 @@ function initializeGame() {
     randomNumber = Math.floor(Math.random() * 99) + 1;
     console.log("randomNumber: " + randomNumber);
     attempts = 0;
+    remainingCount = MAX_ATTEMPTS;
     
     //hiding the Reset button
     document.querySelector("#resetBtn").style.display="none";
@@ -29,7 +32,13 @@ function initializeGame() {
     feedback.textContent = ""; //clearing the feedback
 
     let remainingAttempts = document.querySelector("#remainingAttempts");
-    remainingAttempts.textContent = MAX_ATTEMPTS;
+    remainingAttempts.textContent = remainingCount;
+
+    let totalWins = document.querySelector("#totalWins");
+    totalWins.textContent = winCount;
+
+    let totalLosses = document.querySelector("#totalLosses");
+    totalLosses.textContent = lossCount;
 
     //clearing previous guesses
     document.querySelector("#guesses").textContent = "";
@@ -47,20 +56,22 @@ function checkGuess() {
         return;
     }
     attempts++;
-    remainingAttempts--;
-    document.querySelector("#remainingAttempts").textContent = remainingAttempts;
+    remainingCount--;
+    document.querySelector("#remainingAttempts").textContent = remainingCount;
     console.log("Attempts: " + attempts);
-    console.log("Remaining Attempts: " + remainingAttempts);
+    console.log("Remaining Attempts: " + remainingCount);
     feedback.style.color = "orange";
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You Won!";
         feedback.style.color = "darkgreen";
+        winCount++;
         gameOver();
     } else {
         document.querySelector("#guesses").textContent += guess + " ";
         if (attempts == MAX_ATTEMPTS) {
             feedback.textContent = "Sorry, you lost!";
             feedback.style.color = "red";
+            lossCount++;
             gameOver();
         } else if (guess > randomNumber) {
             feedback.textContent = "Guess was high";
@@ -75,4 +86,8 @@ function gameOver() {
     let resetBtn = document.querySelector("#resetBtn");
     guessBtn.style.display = "none";
     resetBtn.style.display = "inline";
+    document.querySelector("#totalWins").textContent = winCount;
+    document.querySelector("#totalLosses").textContent = lossCount;
+    console.log("Win Count: " + winCount);
+    console.log("Loss Count: " + lossCount);
 }
