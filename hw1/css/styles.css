@@ -69,11 +69,15 @@ nav ul {
 
 .principles-card, .practices-card {
     background: #ffffff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     border-left: 3px solid #d59311;
-    box-shadow 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .principles-card:hover, .practices-card:hover {
@@ -87,9 +91,12 @@ nav ul {
     font-weight: bold;
     color: #d59311;
     display: block;
-    margin-bottom: 10px;
 }
 
-footer, header, main, nav, h2, .values-header, .scrum-header {
+.principles-card p, .practices-card p {
+    margin: 0;
+}
+
+footer, header, main, nav, h2, .values-header, .scrum-header, .kanban-header, .lean-header {
     text-align: center;
 }
