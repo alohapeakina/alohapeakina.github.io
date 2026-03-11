@@ -5,7 +5,9 @@ html {
 body {
     background-color: #f8f9fa;
     color:#2d3436;
-    line-height: 1.5;
+    line-height: 1.6;
+
+    font-size: 1.1rem;
     
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -14,14 +16,20 @@ body {
     font-variation-settings:
     "wdth" 100;
 
-    padding-left: 50px;
-    padding-right: 50px;
+    text-align: left;
 }
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 
 nav a {
     padding: 15px;
     padding-bottom: 4px;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     text-decoration: none;
     color:#003366;
 }
@@ -50,16 +58,17 @@ nav ul {
 
 .principles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-    gap: 30px 25px;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px 20px;
     padding: 30px 20px;
     max-width: 1200px;
+    font-size: 1rem;
     margin: 0 auto;
 }
 
 .kanban-practices-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     gap: 10px;
     padding: 10px;
     max-width: 1200px;
@@ -97,6 +106,13 @@ nav ul {
     margin: 0;
 }
 
-footer, header, main, nav, h2, .values-header, .scrum-header, .kanban-header, .lean-header {
+footer, header, nav, h2, .values-header, .scrum-header, .kanban-header, .lean-header {
     text-align: center;
+}
+
+.values-header img {
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
