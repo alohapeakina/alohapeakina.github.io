@@ -47,6 +47,7 @@ function checkGuess() {
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You Won!";
         feedback.style.color = "darkgreen";
+        gameOver();
     } else {
         document.querySelector("#guesses").textContent += guess + " ";
         if (attempts == 7) {
