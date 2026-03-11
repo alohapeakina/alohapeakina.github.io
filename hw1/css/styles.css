@@ -77,7 +77,7 @@ nav ul {
     justify-content: center;
 }
 
-.lean-values-grid {
+.lean-principles-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -88,7 +88,7 @@ nav ul {
     margin: 0 auto;
 }
 
-.principles-card, .practices-card, .lean-values-card {
+.principles-card, .practices-card, .lean-principles-card {
     background: #ffffff;
     padding: 15px;
     border-radius: 10px;
@@ -101,7 +101,7 @@ nav ul {
     gap: 5px;
 }
 
-.lean-values-card {
+.lean-principles-card {
 
     flex: 1 1 280px;
     max-width: 250px;
@@ -118,7 +118,7 @@ nav ul {
     gap: 5px;
 }
 
-.principles-card:hover, .practices-card:hover, .lean-values-card:hover {
+.principles-card:hover, .practices-card:hover, .lean-principles-card:hover {
     transform:translateY(-5px);
     background: #ffffff;
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
@@ -131,7 +131,7 @@ nav ul {
     display: block;
 }
 
-.lean-values-card span {
+.lean-principles-card span {
     font-size: 1.3rem;
     text-align: center;
     font-weight: bold;
@@ -139,7 +139,7 @@ nav ul {
     display: block;
 }
 
-.principles-card p, .practices-card p, .lean-values-card p {
+.principles-card p, .practices-card p, .lean-principles-card p {
     margin: 0;
 }
 
