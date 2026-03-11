@@ -106,7 +106,7 @@ nav ul {
     margin: 0;
 }
 
-footer, header, nav, h2, .values-header, .scrum-header, .kanban-header, .lean-header {
+footer, header, nav, h2, h3, .values-header, .scrum-header, .kanban-header, .lean-header {
     text-align: center;
 }
 
