@@ -57,7 +57,17 @@ nav ul {
     margin: 0 auto;
 }
 
-.principles-card {
+.kanban-practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 10px;
+    padding: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.principles-card, .practices-card {
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -66,13 +76,13 @@ nav ul {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.principles-card:hover {
+.principles-card:hover, .practices-card:hover {
     transform:translateY(-5px);
     background: #ffffff;
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-.principles-card span {
+.principles-card span, .practices-card span {
     font-size: 2rem;
     font-weight: bold;
     color: #d59311;
@@ -80,11 +90,6 @@ nav ul {
     margin-bottom: 10px;
 }
 
-.manifesto, .scrum-overview, .kanban-overview, .lean-overview {
-    /* padding-left: 50px;
-    padding-right: 50px; */
-}
-
-footer, header, main, nav, .values-header, h2 {
+footer, header, main, nav, h2, .values-header, .scrum-header {
     text-align: center;
 }
