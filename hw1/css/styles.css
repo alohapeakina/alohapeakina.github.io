@@ -110,7 +110,7 @@ footer, header, nav, h2, h3, .values-header, .scrum-header, .kanban-header, .lea
     text-align: center;
 }
 
-.values-header img {
+.values-header img, .kanban-header img {
     max-width: 600px;
     height: auto;
     border-radius: 8px;
