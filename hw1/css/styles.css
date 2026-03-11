@@ -111,6 +111,10 @@ footer, header, nav, h2, h3, .values-header, .scrum-header, .kanban-header, .lea
     text-align: center;
 }
 
+figcaption {
+    font-size: 0.9rem;
+}
+
 .values-header img, .kanban-header img {
     max-width: 600px;
     height: auto;
