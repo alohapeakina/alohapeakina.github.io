@@ -65,9 +65,11 @@ nav ul {
 .principles-card:hover {
     transform:translateY(-5px);
     background: #33363f;
+    /* transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4); */
 }
 
-.principle-card span {
+.principles-card span {
     font-size: 2rem;
     font-weight: bold;
     color: #d59311;
