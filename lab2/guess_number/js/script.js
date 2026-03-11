@@ -28,6 +28,9 @@ function initializeGame() {
     let feedback = document.querySelector("#feedback");
     feedback.textContent = ""; //clearing the feedback
 
+    let remainingAttempts = document.querySelector("#remainingAttempts");
+    remainingAttempts.textContent = MAX_ATTEMPTS;
+
     //clearing previous guesses
     document.querySelector("#guesses").textContent = "";
     
@@ -44,7 +47,10 @@ function checkGuess() {
         return;
     }
     attempts++;
+    remainingAttempts--;
+    document.querySelector("#remainingAttempts").textContent = remainingAttempts;
     console.log("Attempts: " + attempts);
+    console.log("Remaining Attempts: " + remainingAttempts);
     feedback.style.color = "orange";
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You Won!";
