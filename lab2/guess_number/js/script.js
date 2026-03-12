@@ -50,17 +50,20 @@ function checkGuess() {
     feedback.textContent = "";
     let guess = document.querySelector("#playerGuess").value;
     console.log("Player guess: " + guess);
+
     if (guess < 1 || guess > 99) {
         feedback.textContent = "Enter a number between 1 and 99";
         feedback.style.color = "red";
         return;
     }
+
     attempts++;
     remainingCount--;
     document.querySelector("#remainingAttempts").textContent = remainingCount;
     console.log("Attempts: " + attempts);
     console.log("Remaining Attempts: " + remainingCount);
     feedback.style.color = "orange";
+
     if (guess == randomNumber) {
         feedback.textContent = "You guessed it! You Won!";
         feedback.style.color = "darkgreen";
@@ -79,6 +82,11 @@ function checkGuess() {
             feedback.textContent = "Guess was low";
         }
     }
+
+    // Clears previous guess and refocuses to input window
+    let playerGuess = document.querySelector("#playerGuess");
+    playerGuess.value = "";
+    playerGuess.focus();
 }
 
 function gameOver() {

@@ -54,9 +54,18 @@ button:hover {
     background-color: #303F9F;
 }
 
-button.active {
+button:active {
     transform: translateY(2px);
     border-bottom: 2px solid #1A237E;
+}
+
+#resetBtn {
+    background-color: #00796B;
+    border-bottom: 4px solid #004D40;
+}
+
+#resetBtn:hover {
+    background-color: #00695C;
 }
 
 #reset-area {
