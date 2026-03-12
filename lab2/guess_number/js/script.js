@@ -69,7 +69,7 @@ function checkGuess() {
     } else {
         document.querySelector("#guesses").textContent += guess + " ";
         if (attempts == MAX_ATTEMPTS) {
-            feedback.textContent = "Sorry, you lost!";
+            feedback.textContent = "Sorry, you lost! The number was " + randomNumber;
             feedback.style.color = "red";
             lossCount++;
             gameOver();
