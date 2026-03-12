@@ -4,6 +4,16 @@
         <title> Guess a Number </title>
         <meta charset="utf-8">
         <link href="./css/styles.css" rel="stylesheet">
+        <style>
+            body {
+                background-image: url("img/guess_background.png");
+                /* background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                background-size: 100% 100%; */
+                background-color: #E4F3FE;
+            }
+        </style>
     </head>
     <body>
 
@@ -19,16 +29,16 @@
           <button id="resetBtn"> Reset </button> 
           <div id="feedback"></div>
           <section class ="game-stats">
-            <div>Previous Guesses:
+            <div class="stats-card">Previous Guesses:
                     <span id="guesses"></span>
             </div>
-            <div>Remaining Attempts:
+            <div class="stats-card">Remaining Attempts:
                     <span id="remainingAttempts"></span>
             </div>
-            <div>Wins:
+            <div class="stats-card">Wins:
                 <span id="totalWins"></span>
             </div>
-            <div>Losses:
+            <div class="stats-card">Losses:
                 <span id="totalLosses"></span>
             </div>
             </section>
