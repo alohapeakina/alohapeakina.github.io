@@ -34,11 +34,13 @@ body {
 input[type="text"] {
     height: 30px;
     font-size: 1rem;
+    vertical-align: middle;
 }
 
 button {
     width: 90px;
     height: 40px;
+    vertical-align: middle;
     
     border: none;
     border-radius: 8px;
