@@ -39,8 +39,24 @@ input[type="text"] {
 button {
     width: 90px;
     height: 40px;
+    
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: #3F51B5;
+    border-bottom: 4px solid #1A237E; 
+
     font-size: 1.1rem;
-    box-shadow: 0 4px #0000000d
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #303F9F;
+}
+
+button.active {
+    transform: translateY(2px);
+    border-bottom: 2px solid #1A237E;
 }
 
 #reset-area {
