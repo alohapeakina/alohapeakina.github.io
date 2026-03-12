@@ -19,10 +19,10 @@ function initializeGame() {
     remainingCount = MAX_ATTEMPTS;
     
     //hiding the Reset button
-    document.querySelector("#resetBtn").style.display="none";
+    document.querySelector("#resetBtn").style.visibility="hidden";
 
     //showing the Guess button
-    document.querySelector("#guessBtn").style.display = "inline";
+    document.querySelector("#guessBtn").style.visibility = "visible";
 
     let playerGuess = document.querySelector("#playerGuess");
     playerGuess.focus(); //adding focus to textbox
@@ -84,8 +84,8 @@ function checkGuess() {
 function gameOver() {
     let guessBtn = document.querySelector("#guessBtn");
     let resetBtn = document.querySelector("#resetBtn");
-    guessBtn.style.display = "none";
-    resetBtn.style.display = "inline";
+    guessBtn.style.visibility = "hidden";
+    resetBtn.style.visibility = "visible";
     document.querySelector("#totalWins").textContent = winCount;
     document.querySelector("#totalLosses").textContent = lossCount;
     console.log("Win Count: " + winCount);

@@ -4,20 +4,21 @@ header {
     max-width: 600px;
     
     background-color: #FFFFFF;
-    color: #1A237E;
-    padding: 25px;
-    border-radius: 15px;
-    border: 3px solid #1A237E;
+    padding: 20px;
+    border-radius: 20px;
+    border: 4px solid #1A237E;
+    box-shadow: 0 8px 20px #00796b26;
 }
 
 header h1 {
     font-size: 2.2rem;
     margin: 0;
     letter-spacing: 2px;
+    color: #1A237E;
 }
 
 header h2 {
-    font-size 1rem;
+    font-size: 1.3rem;
     color: #3F51B5;
     font-weight: 400;
     margin-top: 10px;
