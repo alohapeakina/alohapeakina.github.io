@@ -1,8 +1,13 @@
 //Global variables
 const quizForm = document.querySelector("#test-area");
+const results = document.querySelector("#results-area");
+const scoreText = document.querySelector("#score-text");
+const TARGET_SCORE = 80;
+const score = 60;
 
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",testAction);
+document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
 
 // Saves progress to local storage
 quizForm.addEventListener("change", () => {
@@ -44,12 +49,18 @@ window.addEventListener("load", () => {
     }
 });
 
-function grade(e) {
-
+function gradeQuiz() {
+    results.classList.remove("d-none"); // Un-hides the results div
+    if (score >= 80) {
+        results.classList.replace("alert-primary","alert-success");
+        scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
+    } else {
+        scoreText.innerText = `You scored: ${score}/100.`;
+    }
 }
 
 
-function testAction(e) {
+function testAction() {
 
     const q1Checked = document.querySelector('input[name="q1"]:checked');
 
