@@ -1,0 +1,10 @@
+/* #quiz {
+    box-sizing: content-box;
+} */
+
+body {
+    max-width: 1000px;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
