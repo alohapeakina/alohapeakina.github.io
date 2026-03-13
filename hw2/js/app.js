@@ -44,11 +44,12 @@ window.addEventListener("load", () => {
     }
 });
 
+function grade(e) {
+
+}
 
 
 function testAction(e) {
-
-    e.preventDefault();
 
     const q1Checked = document.querySelector('input[name="q1"]:checked');
 
