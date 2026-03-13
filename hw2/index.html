@@ -51,9 +51,9 @@
         </div>
 
          <div class="card mb-4 shadow-sm">
-            <div class="question-card">
+            <div class="question-card d-flex flex-column align-items-center">
                 <h5 class="question-copy">What is the least densely populated state in the United States of America?</h5>
-                <select class="custom-select" name="q3">
+                <select class="form-control" style="width:auto;" name="q3">
                     <option selected>Choose a state</option>
                     <option value="wy">Wyoming</option>
                     <option value="ca">California</option>
@@ -64,6 +64,14 @@
             </div>
         </div>
 
+        <div class="card mb-4 shadow-sm">
+            <div class="question-card d-flex flex-column align-items-center">
+                <h5 class="question-copy">What was the first state?</h5>
+                <div class="responses">
+                    <input class="form-control" style="width:200px;" type="text" name="q4" id="q4" placeholder="Enter a state">
+                </div>
+            </div>
+        </div>
         
         <div class="text-end">
         <!-- <button type="submit" class="btn btn-primary btn-lg px-5" id="nextBtn">Next Question</button> -->
