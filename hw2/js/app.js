@@ -49,7 +49,24 @@ window.addEventListener("load", () => {
     }
 });
 
+function isFormValid() {
+    let isValid = true;
+
+    if (document.getElementsByName('input[name="q1"]:checked').value == null ) {
+        isValid=false;
+        document.querySelector("#validationFdbk").innerHTML = "Question 1 was not answered";
+    }
+
+    return isValid;
+}
+
 function gradeQuiz() {
+    console.log("Grading quiz");
+    document.querySelector("#validationFdbk").innerHTML = "";
+    if (!isFormValid()) {
+        return;
+    }
+    console.log("I made it past the grading return");
     results.classList.remove("d-none"); // Un-hides the results div
     if (score >= 80) {
         results.classList.replace("alert-primary","alert-success");
