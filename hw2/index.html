@@ -17,7 +17,10 @@
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card">
-                <h5 class="question-copy">What state is Mount Rushmore loacted in?</h5>
+                <h5 class="question-copy"><span id="markImg1"></span>What state is Mount Rushmore loacted in?</h5>
+                <br>
+                <div id="q1Feedback"></div>
+                <br>
                 <div class="responses">
                     <input class="form-check-input" type="radio" name="q1" id="q1a1" value="North Dakota">
                     <label class="form-check-label" for="q1a1">North Dakota</label>
@@ -39,7 +42,10 @@
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card">
-                <h5 class="question-copy">Sample Question</h5>
+                <h5 class="question-copy"><span id="markImg2"></span>Sample Question</h5>
+                <br>
+                <div id="q2Feedback"></div>
+                <br>                
                 <div class="responses">
                     <input class="form-check-input" type="radio" name="q2" id="q2a1" value="North Dakota">
                     <label class="form-check-label" for="q2a1">North Dakota</label>
@@ -198,13 +204,13 @@
         </div>
         <!-- END OF QUIZ QUESTIONS -->
 
+        <h3 id="validationFdbk" class="bg-danger text-white"></h3>
         
         <div class="text-end">
-        <!-- <button type="submit" class="btn btn-primary btn-lg px-5" id="nextBtn">Next Question</button> -->
-         <h3 id="validationFdbk" class="bg-danger text-white"></h3>
-        <button type="button" class="btn btn-primary btn-lg px-5" id="submitBtn">Submit Quiz</button>
+            <!-- <button type="submit" class="btn btn-primary btn-lg px-5" id="nextBtn">Next Question</button> -->
+            <button type="button" class="btn btn-primary btn-lg px-5" id="submitBtn">Submit Quiz</button>
         </div>
-
+        
         <div id="results-area" class="alert alert-primary mt-4 d-none" role="alert">
             <h3>You're done!</h3>
             <p id="score-text"></p>

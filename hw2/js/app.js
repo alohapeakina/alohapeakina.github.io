@@ -3,7 +3,8 @@ const quizForm = document.querySelector("#test-area");
 const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
 const TARGET_SCORE = 80;
-const score = 60;
+score = 60;
+var attempts = 0;
 
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",testAction);
@@ -50,13 +51,16 @@ window.addEventListener("load", () => {
 });
 
 function isFormValid() {
-    let isValid = true;
-
-    if (document.getElementsByName('input[name="q1"]:checked').value == null ) {
-        isValid=false;
-        document.querySelector("#validationFdbk").innerHTML = "Question 1 was not answered";
+    let isValid = false;
+    
+    if (document.querySelector('input[name="q1"]:checked')) {
+        isValid=true;
+        console.log("isValid value (early return) = " + isValid)
+        return isValid;
     }
-
+    
+    document.querySelector("#validationFdbk").innerHTML = "Question 1 was not answered";
+    console.log("isValid value (escaped) = " + isValid)
     return isValid;
 }
 
