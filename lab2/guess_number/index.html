@@ -4,50 +4,50 @@
         <title> Guess a Number </title>
         <meta charset="utf-8">
         <link href="./css/styles.css" rel="stylesheet">
-        <style>
-            body {
-                background-image: url("img/guess_background.png");
-                background-color: #E4F3FE;
-            }
-        </style>
     </head>
     <body>
+        <div id="play-area">
 
-        <header>
-            <h1>Guess the Number!</h1>
-            <h2>Guess a number between 1 and 99 in seven attempts!</h2>
-        </header>
-        <br>
-        <div id="main">
+            <header>
+                <h1>Guess the Number!</h1>
+                <h2>Guess a number between 1 and 99 in seven attempts!</h2>
+            </header>
+            <br>
+            <div id="main">
 
-            <div id="input-area">
-                Enter a guess: 
-                <input type="text" id="playerGuess" size="13">
-                <button id="guessBtn"> Guess </button>
+                <div id="input-area">
+                    Enter a guess: 
+                    <input type="text" id="playerGuess" size="13">
+                    <button id="guessBtn"> Guess </button>
+                </div>
+
+            <div id="reset-area">
+                <button id="resetBtn"> Reset </button> 
             </div>
 
-          <div id="reset-area">
-              <button id="resetBtn"> Reset </button> 
-          </div>
+            <div id="feedback"></div>
 
-          <div id="feedback"></div>
-
-          <section class ="game-stats">
-                <div class="stats-card">Previous Guesses:
-                        <span id="guesses"></span>
-                </div>
-                <div class="stats-card">Remaining Attempts:
-                        <span id="remainingAttempts"></span>
-                </div>
-                <div class="stats-card">Wins:
-                    <span id="totalWins"></span>
-                </div>
-                <div class="stats-card">Losses:
-                    <span id="totalLosses"></span>
-                </div>
-            </section>
+            <section class ="game-stats">
+                    <div class="stats-card">Previous Guesses:
+                            <span id="guesses"></span>
+                    </div>
+                    <div class="stats-card">Remaining Attempts:
+                            <span id="remainingAttempts"></span>
+                    </div>
+                    <div class="stats-card">Wins:
+                        <span id="totalWins"></span>
+                    </div>
+                    <div class="stats-card">Losses:
+                        <span id="totalLosses"></span>
+                    </div>
+                </section>
+            </div>
         </div>
 
         <script src="js/script.js"></script>
+        <footer>
+            <hr>
+            CST336 Internet Programming. 2026&copy; Lee <br>
+        </footer>
     </body>
 </html>

@@ -24,11 +24,21 @@ header h2 {
     margin-top: 10px;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
-    background-image: url("guess_background.png");
+    background-image: url("../img/guess_background.png");
     background-repeat: repeat;
     background-size: 1024px 1024px;
     background-color: #E4F3FE;
+
+
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
 }
 
 input[type="text"] {
@@ -139,4 +149,13 @@ button:active {
     font-size: 1.4rem;
     text-align: center;
     text-shadow: 0.5px 0.5px 0px #0000001a; 
+}
+
+#play-area {
+    flex: 1;
+}
+
+footer {
+    margin-bottom: 10px;
+    text-align: center;
 }
