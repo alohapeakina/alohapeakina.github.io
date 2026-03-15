@@ -148,10 +148,10 @@ function loadProgress() {
     }
 
     // Resets quiz if re-loading a submitted quiz
-    // const isSubmitted = localStorage.getItem("quiz_submitted");
-    // if (isSubmitted === "true") {
-    //     resetQuiz();
-    // }
+    const isSubmitted = localStorage.getItem("quiz_submitted");
+    if (isSubmitted === "true") {
+        resetQuiz();
+    }
 }
 
 // Verifies all quiz questions have been answered
