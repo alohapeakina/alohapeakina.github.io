@@ -9,9 +9,11 @@ var attempts = 0;
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",testAction);
 document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
+quizform.querySelector("#test-area").addEventListener("change",saveProgress);
+window.addEventListener("load", loadProgress);
 
 // Saves progress to local storage
-quizForm.addEventListener("change", () => {
+function saveProgress() {
     const formData = new FormData(quizForm);
     const quizData = {};
 
@@ -28,10 +30,11 @@ quizForm.addEventListener("change", () => {
 
     localStorage.setItem("quiz_progress", JSON.stringify(quizData));
     console.log("Progress Saved", quizData);
-});
+}
 
 // Restores progress/answers on a page load
-window.addEventListener("load", () => {
+// TODO: Review splitting quiz loading, which would require rendering refactor
+function loadProgress() {
     const savedResponses = JSON.parse(localStorage.getItem("quiz_progress"));
 
     if (savedResponses) {
@@ -48,7 +51,7 @@ window.addEventListener("load", () => {
             });
         });
     }
-});
+}
 
 function isFormValid() {
     let isValid = false;
