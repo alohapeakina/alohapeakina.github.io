@@ -1,16 +1,14 @@
-/* #quiz {
-    box-sizing: content-box;
-} */
-
 body {
     max-width: 1000px;
-    justify-content: center;
-    text-align: center;
+    background-color: #f8f9fa;
     margin: 0 auto;
 }
 
-.responses {
-    justify-content: start;
-    /* text-align: start; */
-    /* margin: 0 auto; */
+.responses-container {
+    min-width: 250px;
+    margin-top: 15px;
+}
+
+h1 {
+    text-align: center;
 }
