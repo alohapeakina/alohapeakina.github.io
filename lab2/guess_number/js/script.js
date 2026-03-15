@@ -65,6 +65,7 @@ function checkGuess() {
     feedback.style.color = "orange";
 
     if (guess == randomNumber) {
+        document.querySelector("#guesses").textContent += guess + " ";
         feedback.textContent = "You guessed it! You Won!";
         feedback.style.color = "darkgreen";
         winCount++;
