@@ -79,8 +79,8 @@ function rightAnswer(index) {
     
     if (feedback && img) {
         feedback.innerHTML = "Correct!";
-        feedback.className = "bg-success text-white";
-        img.innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
+        feedback.className = "bg-success text-white w-100 mt-2 text-center";
+        img.innerHTML = "<img src='img/checkmark.png' alt='Checkmark' class='quiz-mark'>";
         score += 10;
     } else {
         console.error(`Could not find UI elements for index ${index}.`);
@@ -99,8 +99,8 @@ function wrongAnswer(index) {
 
     if (feedback && img) {
         feedback.innerHTML = "Incorrect!";
-        feedback.className = "bg-warning text-white";
-        img.innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+        feedback.className = "bg-warning text-white w-100 mt-2 text-center";
+        img.innerHTML = "<img src='img/xmark.png' alt='xmark' class='quiz-mark'>";
     } else {
         console.error(`Could not find UI elements for index ${index}.`);
     }

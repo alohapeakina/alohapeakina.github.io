@@ -8,7 +8,7 @@
     <link href="./css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <h1 class="p-5 bg-info">US Geography Quiz</h1>
+    <h1 class="p-5">US Geography Quiz</h1>
 
     
     <form id="test-area">
@@ -18,7 +18,7 @@
         <div class="card mb-4 shadow-sm">
             <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="question-copy"><span id="markImg1"></span>What state is Mount Rushmore loacted in?</h5>
-                <div id="q1Feedback" class="w-100 text-center"></div>
+                <div id="q1Feedback"></div>
                 <div class="responses-container text-start">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="q1" id="q1a1" value="North Dakota">
@@ -43,7 +43,7 @@
         <div class="card mb-4 shadow-sm">
             <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="question-copy"><span id="markImg2"></span>Which state is the Grand Canyon located in?</h5>
-                <div id="q2Feedback" class="w-100 text-center"></div>       
+                <div id="q2Feedback"></div>       
                 <div class="responses-container text-start">      
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="q2" id="q2a1" value="utah">
@@ -68,7 +68,7 @@
         <div class="card mb-4 shadow-sm">
             <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="question-copy"><span id="markImg3"></span>What is the longest river in the United States?</h5>
-                <div id="q3Feedback" class="w-100 text-center"></div>
+                <div id="q3Feedback"></div>
                 <div class="responses-container text-start">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="q3" id="q3a1" value="mississippi">
@@ -93,7 +93,7 @@
         <div class="card mb-4 shadow-sm">
             <div class="card-body d-flex flex-column align-items-center">
                 <h5 class="question-copy text-center"><span id="markImg4"></span>What is the largest Great Lake?</h5>
-                <div id="q4Feedback" class="w-100 text-center"></div>
+                <div id="q4Feedback"></div>
                 <div class="responses-container text-start">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="q4" id="q4a1" value="michigan">
@@ -189,7 +189,7 @@
                 <h5 class="question-copy"><span id="markImg8"></span>What is the least densely populated state in the United States?</h5>
                 <div id="q8Feedback"></div>
                 <div class="responses-container text-start">
-                    <select class="form-control" style="width:auto;" name="q8" id="q8a">
+                    <select class="form-control" style="width:200px;" name="q8" id="q8a">
                         <option value="" selected>Choose a state</option>
                         <option value="wy">Wyoming</option>
                         <option value="ca">California</option>
@@ -234,7 +234,6 @@
             <h3>You're done!</h3>
             <p id="score-text"></p>
         </div>
-
 
     </form>
     <script src="js/app.js"></script>

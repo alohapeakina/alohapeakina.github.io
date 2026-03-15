@@ -11,4 +11,11 @@ body {
 
 h1 {
     text-align: center;
+    background-color:aqua;
+}
+
+.quiz-mark {
+    height: 1.6rem;
+    vertical-align: top;
+    margin-right: 10px;
 }
