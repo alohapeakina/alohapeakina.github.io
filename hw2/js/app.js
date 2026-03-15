@@ -131,6 +131,7 @@ function wrongAnswer(index) {
 
 function gradeQuiz() {
     console.log("Grading quiz");
+    score = 0;
 
     document.querySelector("#validationFdbk").innerHTML = "";
     // Check for no missing questions
@@ -231,18 +232,24 @@ function gradeQuiz() {
 
     // ========== END OF GRADING QUESTIONS ==========
 
+    // Displays results of quiz to user
+    displayResults();
+}
 
-    // ========== DISPLAY RESULTS ==========
+function displayResults() {
+
     results.classList.remove("d-none"); // Un-hides the results div
+
     if (score >= TARGET_SCORE) {
         results.classList.replace("alert-danger","alert-success");
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
         scoreText.innerText = `You scored: ${score}/100.`;
     }
-
+    
     attemptsText.innerText = `Total attempts: ${++attempts}`;
     localStorage.setItem("total_attempts", attempts);
-
+    
     document.querySelector("#results-area").scrollIntoView();
+    
 }
