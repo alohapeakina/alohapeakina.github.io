@@ -1,5 +1,9 @@
 //Global variables
 let usernameAvailable = false;
+const STATES = {
+    ca: "California",
+
+}
 
 //Event Listeners
 document.querySelector("#zip").addEventListener("change",displayCity);
@@ -65,7 +69,7 @@ function validateForm(e) {
     console.log("Password value is: " + password);
 
     let usernameError = document.querySelector("#usernameError");
-    let passwordError = document.querySelector("#suggestedPwd");
+    let passwordError = document.querySelector("#passwordError");
 
     // Clear previous messages
     usernameError.textContent = "";
