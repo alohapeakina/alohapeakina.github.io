@@ -9,162 +9,168 @@
     <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.2/underscore-umd-min.js"> </script> 
 </head>
 <body>
-    <header class="p-5">
-        <h1> <img src="img/globe.svg" alt="globe">
-            US Geography Quiz</h1>
+    <div class="main">
+        <header class="p-5">
+            <h1> <img src="img/globe.svg" alt="globe">
+                US Geography Quiz</h1>
 
-    </header>
-    
-    <form id="test-area">
+        </header>
         
-        <!-- BEGINNING OF QUIZ QUESTIONS -->
+        <form id="test-area">
+            
+            <!-- BEGINNING OF QUIZ QUESTIONS -->
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg1"></span>What state is Mount Rushmore loacted in?</h5>
-                <div id="q1Feedback"></div>
-                <div class="responses-container text-start">
-                    <div id="q1Choices"></div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg1"></span>What state is Mount Rushmore loacted in?</h5>
+                    <div id="q1Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div id="q1Choices"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg2"></span>Which state is the Grand Canyon located in?</h5>
-                <div id="q2Feedback"></div>       
-                <div class="responses-container text-start">      
-                    <div id="q2Choices"></div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg2"></span>Which state is the Grand Canyon located in?</h5>
+                    <div id="q2Feedback"></div>       
+                    <div class="responses-container text-start">      
+                        <div id="q2Choices"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg3"></span>What is the longest river in the United States?</h5>
-                <div id="q3Feedback"></div>
-                <div class="responses-container text-start">
-                    <div id="q3Choices"></div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg3"></span>What is the longest river in the United States?</h5>
+                    <div id="q3Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div id="q3Choices"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg4"></span>What is the largest Great Lake?</h5>
-                <div id="q4Feedback"></div>
-                <div class="responses-container text-start">
-                    <div id="q4Choices"></div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg4"></span>What is the largest Great Lake?</h5>
+                    <div id="q4Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div id="q4Choices"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg5"></span>Which Hawaiian island is nicknamed "The Garden Isle"?</h5>
-                <div id="q5Feedback"></div>
-                <div class="responses-container text-start">
-                    <div id="q5Choices"></div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg5"></span>Which Hawaiian island is nicknamed "The Garden Isle"?</h5>
+                    <div id="q5Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div id="q5Choices"></div>
+                    </div>
                 </div>
             </div>
+            
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg6"></span>(T/F) California is the largest state by land mass</h5>
+                    <div id="q6Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q6" id="q6a1" value="true">
+                            <label class="form-check-label" for="q6a1">True</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q6" id="q6a2" value="false">
+                            <label class="form-check-label" for="q6a2">False</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg7"></span>Which of these California cities is home to an NBA team?</h5>
+                    <p><em>Select all that apply</em></p>
+                    <div id="q7Feedback"></div>
+                    <div class="responses-container text-start">
+                        <div class="responses">
+                        <input class="form-check-input" type="checkbox" name="q7" id="q7SanDiego" value="sandiego">
+                        <label class="form-check-label" for="q7SanDiego">San Diego</label> <br>
+                        </div>
+                        <div class="responses">
+                        <input class="form-check-input" type="checkbox" name="q7" id="q7LosAngeles" value="losangeles">
+                        <label class="form-check-label" for="q7LosAngeles">Los Angeles</label>
+                        </div>
+                        <div class="responses">
+                        <input class="form-check-input" type="checkbox" name="q7" id="q7Sacramento" value="sacramento">
+                        <label class="form-check-label" for="q7Sacramento">Sacramento</label> <br>
+                        </div>
+                        <div class="responses">
+                        <input class="form-check-input" type="checkbox" name="q7" id="q7SanFrancisco" value="sanfrancisco">
+                        <label class="form-check-label" for="q7SanFrancisco">San Francisco</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg8"></span>What is the least densely populated state in the United States?</h5>
+                    <div id="q8Feedback"></div>
+                    <div class="responses-container text-start">
+                        <select class="form-control" style="width:200px;" name="q8" id="q8a">
+                            <option value="" selected>Choose a state</option>
+                            <option value="wy">Wyoming</option>
+                            <option value="ca">California</option>
+                            <option value="ri">Rhode Island</option>
+                            <option value="ak">Alaska</option>
+                            <option value="de">Delaware</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg9"></span>What was the first state?</h5>
+                    <div id="q9Feedback"></div>
+                    <div class="responses-container text-start">
+                        <input class="form-control" style="width:200px;" type="text" name="q9" id="q9a" placeholder="Enter a state">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="question-text"><span id="markImg10"></span>When did the last state join the United States?</h5>
+                    <p><em>Excluding US territories</em></p>
+                    <div id="q10Feedback"></div>
+                    <div class="responses-container text-start">
+                        <input class="form-control" style="width:200px;" type="date" name="q10" id="q10a">
+                    </div>
+                </div>
+            </div>
+            <!-- END OF QUIZ QUESTIONS -->
+
+            <h3 id="validationFdbk"></h3>
+
+            <div id="results-area" class="alert alert-danger mt-4 d-none" role="alert">
+            <h3 id="score-text"></h3>
+            <p id="total-attempts"></p>
         </div>
         
-
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg6"></span>(T/F) California is the largest state by land mass</h5>
-                <div id="q6Feedback"></div>
-                <div class="responses-container text-start">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q6" id="q6a1" value="true">
-                        <label class="form-check-label" for="q6a1">True</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="q6" id="q6a2" value="false">
-                        <label class="form-check-label" for="q6a2">False</label>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-stretch gap-3 mt-4">
+                <button type="button" class="btn btn-primary btn-lg px-5 invisible" id="resetBtn">Take Again?</button>
+                <button type="button" class="btn btn-primary btn-lg px-5" id="submitBtn">Submit Quiz</button>
         </div>
 
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg7"></span>Which of these California cities is home to an NBA team?</h5>
-                <p><em>Select all that apply</em></p>
-                <div id="q7Feedback"></div>
-                <div class="responses-container text-start">
-                    <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7SanDiego" value="sandiego">
-                    <label class="form-check-label" for="q7SanDiego">San Diego</label> <br>
-                    </div>
-                    <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7LosAngeles" value="losangeles">
-                    <label class="form-check-label" for="q7LosAngeles">Los Angeles</label>
-                    </div>
-                    <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7Sacramento" value="sacramento">
-                    <label class="form-check-label" for="q7Sacramento">Sacramento</label> <br>
-                    </div>
-                    <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7SanFrancisco" value="sanfrancisco">
-                    <label class="form-check-label" for="q7SanFrancisco">San Francisco</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-         <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg8"></span>What is the least densely populated state in the United States?</h5>
-                <div id="q8Feedback"></div>
-                <div class="responses-container text-start">
-                    <select class="form-control" style="width:200px;" name="q8" id="q8a">
-                        <option value="" selected>Choose a state</option>
-                        <option value="wy">Wyoming</option>
-                        <option value="ca">California</option>
-                        <option value="ri">Rhode Island</option>
-                        <option value="ak">Alaska</option>
-                        <option value="de">Delaware</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg9"></span>What was the first state?</h5>
-                <div id="q9Feedback"></div>
-                <div class="responses-container text-start">
-                    <input class="form-control" style="width:200px;" type="text" name="q9" id="q9a" placeholder="Enter a state">
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body d-flex flex-column">
-                <h5 class="question-text"><span id="markImg10"></span>When did the last state join the United States?</h5>
-                <p><em>Excluding US territories</em></p>
-                <div id="q10Feedback"></div>
-                <div class="responses-container text-start">
-                     <input class="form-control" style="width:200px;" type="date" name="q10" id="q10a">
-                </div>
-            </div>
-        </div>
-        <!-- END OF QUIZ QUESTIONS -->
-
-        <h3 id="validationFdbk"></h3>
-
-        <div id="results-area" class="alert alert-danger mt-4 d-none" role="alert">
-        <h3 id="score-text"></h3>
-        <p id="total-attempts"></p>
+        </form>
+        <script src="js/app.js"></script>
     </div>
-    
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-stretch gap-3 mt-4">
-            <button type="button" class="btn btn-primary btn-lg px-5 invisible" id="resetBtn">Take Again?</button>
-            <button type="button" class="btn btn-primary btn-lg px-5" id="submitBtn">Submit Quiz</button>
-    </div>
-
-    </form>
-    <script src="js/app.js"></script>
+    <footer>
+        <hr>
+            CST336 Internet Programming. 2026&copy; Lee <br>
+    </footer>
 </body>
 </html>

@@ -1,10 +1,22 @@
 body {
+    background-color: #f0f2f5;
+    background-image: radial-gradient(#d1d9e6 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+.main {
     max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+footer {
     background-color: #f0f2f5;
     background-image: radial-gradient(#d1d9e6 1px, transparent 1px);
     background-size: 40px 40px;
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
