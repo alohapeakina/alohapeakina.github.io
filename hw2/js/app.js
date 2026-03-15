@@ -6,6 +6,14 @@ const attemptsText = document.querySelector("#total-attempts");
 const TARGET_SCORE = 80;
 var score = 0;
 var attempts = localStorage.getItem("total_attempts");
+const MULTIPLE_CHOICE_QUESTIONS = {
+    q1: ["North Dakota", "Montana", "South Dakota", "Wyoming"],
+    q2: ["Utah", "Arizona", "New Mexico", "Nevada"],
+    q3: ["Mississippi", "Colorado", "Missouri", "Rio Grande"],
+    q4: ["Michigan", "Superior", "Erie", "Huron"],
+    q5: ["Oahu", "Molokai", "Kauai", "Maui"]
+}
+
 const ANSWER_KEY = {
     q1: "southdakota",
     q2: "arizona",
@@ -18,7 +26,13 @@ const ANSWER_KEY = {
     q9: ["delaware", "de"],
     q10: "6"
 };
-displayQ4Choices();
+
+const quizKeys = Object.keys(MULTIPLE_CHOICE_QUESTIONS);
+
+
+// displayQ4Choices();
+
+quizKeys.forEach(buildQuestions);
 
 
 
@@ -40,6 +54,37 @@ function displayQ4Choices() {
     }
 }
 
+function shuffleChoices(qName, elementId) {
+    const element = document.querySelector(elementId);
+    if (!element) return;
+
+    //Shuffles the question choices
+    let choices = _.shuffle(MULTIPLE_CHOICE_QUESTIONS[qName]);
+
+    // Ensure the existing container is empty
+    element.innerHTML = "";
+
+    //Build the questions
+    for (let i=0; i < choices.length; i++) {
+        const html = buildChoiceHTML(qName, choices[i], i);
+        element.innerHTML += html;
+    }
+}
+
+function buildChoiceHTML(qName, choiceText, index) {
+    const answerValue = choiceText.toLowerCase().replace(/\s+/g, '');
+    const choiceId = `${qName}a${index}`;
+
+    return `
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="${qName}" id="${choiceId}" value="${answerValue}">
+            <label class="form-check-label" for="${choiceId}">${choiceText}</label>
+        </div>`;
+}
+
+function buildQuestions(qKey) {
+    shuffleChoices(qKey, `#${qKey}Choices`);
+}
 
 
 // Saves progress to local storage
