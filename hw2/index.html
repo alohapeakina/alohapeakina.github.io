@@ -111,22 +111,22 @@
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card">
-                <h5 class="question-copy">Sample Question</h5>
+                <h5 class="question-copy">Which Hawaiian island is nicknamed "The Garden Isle"?</h5>
                 <div class="responses">
-                    <input class="form-check-input" type="radio" name="q5" id="q5a1" value="North Dakota">
-                    <label class="form-check-label" for="q5a1">North Dakota</label>
+                    <input class="form-check-input" type="radio" name="q5" id="q5a1" value="oahu">
+                    <label class="form-check-label" for="q5a1">O&#699;ahu</label>
                 </div>
                 <div class="responses">
-                    <input class="form-check-input" type="radio" name="q5" id="q5a2" value="Montana">
-                    <label class="form-check-label" for="q5a2">Montana</label>
+                    <input class="form-check-input" type="radio" name="q5" id="q5a2" value="molokai">
+                    <label class="form-check-label" for="q5a2">Moloka&#699;i</label>
                 </div>
                 <div class="responses">
-                    <input class="form-check-input" type="radio" name="q5" id="q5a3" value="South Dakota">
-                    <label class="form-check-label" for="q5a3">South Dakota</label>
+                    <input class="form-check-input" type="radio" name="q5" id="q5a3" value="kauai">
+                    <label class="form-check-label" for="q5a3">Kaua&#699;i</label>
                 </div>
                 <div class="responses">
-                    <input class="form-check-input" type="radio" name="q5" id="q5a4" value="Wyoming">
-                    <label class="form-check-label" for="q5a4">Wyoming</label>
+                    <input class="form-check-input" type="radio" name="q5" id="q5a4" value="maui">
+                    <label class="form-check-label" for="q5a4">Maui</label>
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card">
-                <h5 class="question-copy">(T/F) California is the largest state by land mass</h5>
+                <h5 class="question-copy"><span id="markImg6"></span>(T/F) California is the largest state by land mass</h5>
                 <div class="responses d-grid gap-2 d-md-block">
                     <input class="form-check-input" type="radio" name="q6" id="q6a1" value="True">
                     <label class="form-check-label" for="q6a1">True</label>
@@ -144,36 +144,39 @@
                     <label class="form-check-label" for="q6a2">False</label>
                 </div>
             </div>
+            <div id="q6Feedback"></div>
         </div>
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card">
-                <h5 class="question-copy">Which of these California cities is home to an NBA team?</h5>
+                <h5 class="question-copy"><span id="markImg7"></span>Which of these California cities is home to an NBA team?</h5>
+                <p><em>Select all that apply</em></p>
                 <div class="responses">
                     <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7a1" value="San Diego">
-                    <label class="form-check-label" for="q7a1">San Diego</label> <br>
+                    <input class="form-check-input" type="checkbox" name="q7" id="q7SanDiego" value="San Diego">
+                    <label class="form-check-label" for="q7San Diego">San Diego</label> <br>
                     </div>
                     <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7a2" value="Los Angeles">
-                    <label class="form-check-label" for="q7a2">Los Angeles</label>
+                    <input class="form-check-input" type="checkbox" name="q7" id="q7LosAngeles" value="Los Angeles">
+                    <label class="form-check-label" for="q7Los Angeles">Los Angeles</label>
                     </div>
                     <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7a3" value="Sacramento">
-                    <label class="form-check-label" for="q7a3">Sacramento</label> <br>
+                    <input class="form-check-input" type="checkbox" name="q7" id="q7Sacramento" value="Sacramento">
+                    <label class="form-check-label" for="q7Sacramento">Sacramento</label> <br>
                     </div>
                     <div class="responses">
-                    <input class="form-check-input" type="checkbox" name="q7" id="q7a4" value="San Francisco">
-                    <label class="form-check-label" for="q7a4">San Francisco</label>
+                    <input class="form-check-input" type="checkbox" name="q7" id="q7SanFrancisco" value="San Francisco">
+                    <label class="form-check-label" for="q7San Francisco">San Francisco</label>
                     </div>
                 </div>
             </div>
+            <div id="q7Feedback"></div>
         </div>
 
          <div class="card mb-4 shadow-sm">
             <div class="question-card d-flex flex-column align-items-center">
-                <h5 class="question-copy">What is the least densely populated state in the United States of America?</h5>
-                <select class="form-control" style="width:auto;" name="q8">
+                <h5 class="question-copy"><span id="markImg8"></span>What is the least densely populated state in the United States of America?</h5>
+                <select class="form-control" style="width:auto;" name="q8" id="q8a">
                     <option value="" selected>Choose a state</option>
                     <option value="wy">Wyoming</option>
                     <option value="ca">California</option>
@@ -182,25 +185,28 @@
                     <option value="de">Delaware</option>
                 </select>
             </div>
+            <div id="q8Feedback"></div>
         </div>
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card d-flex flex-column align-items-center">
-                <h5 class="question-copy">What was the first state?</h5>
+                <h5 class="question-copy"><span id="markImg9"></span>What was the first state?</h5>
                 <div class="responses">
                     <input class="form-control" style="width:200px;" type="text" name="q9" id="q9a" placeholder="Enter a state">
                 </div>
             </div>
+            <div id="q9Feedback"></div>
         </div>
 
         <div class="card mb-4 shadow-sm">
             <div class="question-card d-flex flex-column align-items-center">
-                <h5 class="question-copy">How many time zones are there in the United States?</h5>
+                <h5 class="question-copy"><span id="markImg10"></span>How many time zones are there in the United States?</h5>
                 <p><em>Excluding US territories</em></p>
                 <div class="responses">
                     <input class="form-control" style="width:200px;" type="number" name="q10" id="q10a" placeholder="Enter a number">
                 </div>
             </div>
+            <div id="q10Feedback"></div>
         </div>
         <!-- END OF QUIZ QUESTIONS -->
 
