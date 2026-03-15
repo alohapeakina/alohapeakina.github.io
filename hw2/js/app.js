@@ -3,9 +3,12 @@ const quizForm = document.querySelector("#test-area");
 const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
 const attemptsText = document.querySelector("#total-attempts");
+const validationFdbk = document.querySelector("#validationFdbk");
 const TARGET_SCORE = 80;
 var score = 0;
 var attempts = localStorage.getItem("total_attempts");
+
+// Needed to randomize options for multiple choice questions
 const MULTIPLE_CHOICE_QUESTIONS = {
     q1: ["North Dakota", "Montana", "South Dakota", "Wyoming"],
     q2: ["Utah", "Arizona", "New Mexico", "Nevada"],
@@ -13,6 +16,9 @@ const MULTIPLE_CHOICE_QUESTIONS = {
     q4: ["Michigan", "Superior", "Erie", "Huron"],
     q5: ["Oahu", "Molokai", "Kauai", "Maui"]
 }
+const quizKeys = Object.keys(MULTIPLE_CHOICE_QUESTIONS);
+quizKeys.forEach(buildQuestions);
+
 
 const ANSWER_KEY = {
     q1: "southdakota",
@@ -27,15 +33,6 @@ const ANSWER_KEY = {
     q10: "6"
 };
 
-const quizKeys = Object.keys(MULTIPLE_CHOICE_QUESTIONS);
-
-
-// displayQ4Choices();
-
-quizKeys.forEach(buildQuestions);
-
-
-
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
 document.querySelector("#resetBtn").addEventListener("click",resetQuiz);
@@ -45,20 +42,10 @@ window.addEventListener("load", loadProgress);
 
 // ======== CORE LOGIC ========
 
-function displayQ4Choices() {
-    let q4ChoicesArray = ["michigan","superior","erie","huron"];
-    q4ChoicesArray = _.shuffle(q4ChoicesArray);
-    for (let i=0; i < q4ChoicesArray.length; i++) {
-        document.querySelector("#q4Choices").innerHTML += `<input class="form-check-input" type="radio" name="q4" id="q4a${q4ChoicesArray[i]}"
-        value="${q4ChoicesArray[i]}"> <label class="form-check-label" for="q4a${q4ChoicesArray[i]}">${q4ChoicesArray[i]}</label>`
-    }
-}
-
 function shuffleChoices(qName, elementId) {
     const element = document.querySelector(elementId);
     if (!element) return;
 
-    //Shuffles the question choices
     let choices = _.shuffle(MULTIPLE_CHOICE_QUESTIONS[qName]);
 
     // Ensure the existing container is empty
@@ -73,7 +60,7 @@ function shuffleChoices(qName, elementId) {
 
 function buildChoiceHTML(qName, choiceText, index) {
     const answerValue = choiceText.toLowerCase().replace(/\s+/g, '');
-    const choiceId = `${qName}a${index}`;
+    const choiceId = `${qName}a${index}`; // This identifies individual response options
 
     return `
         <div class="form-check">
@@ -120,7 +107,7 @@ function loadProgress() {
                 if (Array.isArray(val)) {
                     if (val.includes(input.value)) input.checked = true;
                 } else {
-                    if (input.value ===val) input.checked = true;
+                    if (input.value === val) input.checked = true;
                 }
             });
         });
@@ -146,7 +133,6 @@ function resetQuiz() {
         }
     }
 
-    const validationFdbk = document.querySelector("#validationFdbk");
     validationFdbk.innerHTML = "";
     validationFdbk.className = "";
 
@@ -159,7 +145,6 @@ function resetQuiz() {
 // Verifies all quiz questions have been answered
 function isFormValid() {
 
-    let feedback = document.querySelector("#validationFdbk");
     const questionCount = document.querySelectorAll(".card-body");
     let missingQuestions = [];
 
@@ -183,13 +168,13 @@ function isFormValid() {
     }
     
     if (missingQuestions.length > 0) {
-        feedback.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
-        feedback.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
+        validationFdbk.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
+        validationFdbk.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
         return false;
     }
 
-    feedback.innerHTML = "";
-    feedback.className = "";
+    validationFdbk.innerHTML = "";
+    validationFdbk.className = "";
 
     return true;
 
@@ -237,7 +222,7 @@ function gradeQuiz() {
     console.log("Grading quiz");
     score = 0;
 
-    document.querySelector("#validationFdbk").innerHTML = "";
+    validationFdbk.innerHTML = "";
     // Check for no missing questions
     if (!isFormValid()) {
         return;
