@@ -22,7 +22,7 @@ async function getStates() {
     let stateList = document.querySelector("#state");
     stateList.innerHTML ="<option>Select a State</option>";
     for (let i=0; i < data.length; i++) {
-        stateList.innerHTML += `<option> ${data[i].state} </option>`;
+        stateList.innerHTML += `<option value="${data[i].usps}"> ${data[i].state} </option>`;
     }
 }
 
@@ -42,6 +42,11 @@ async function displayCity() {
 //Displaying counties from Web API based on the two-letter abbreviation of a state
 async function displayCounties() {
     let state = document.querySelector("#state").value;
+    // let state = document.querySelector("#state");
+    // stateCode = state.usps;
+    // console.log(stateCode);
+    console.log(state);
+    console.dir(state);
     let url = `https://csumb.space/api/countyListAPI.php?state=${state}`;
     let response = await fetch(url);
     let data = await response.json();
