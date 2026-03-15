@@ -109,7 +109,12 @@ function wrongAnswer(index) {
 
 function gradeQuiz() {
     console.log("Grading quiz");
+
     document.querySelector("#validationFdbk").innerHTML = "";
+    // Check for no missing questions
+    if (!isFormValid()) {
+        return;
+    }
 
     // ========== GRADING QUESTIONS ==========
 
@@ -205,16 +210,10 @@ function gradeQuiz() {
     // ========== END OF GRADING QUESTIONS ==========
 
 
-    // Check for no missing questions
-    if (!isFormValid()) {
-        return;
-    }
-    console.log("I made it past the grading return");
-
-    // Displays results
+    // ========== DISPLAY RESULTS ==========
     results.classList.remove("d-none"); // Un-hides the results div
-    if (score >= 80) {
-        results.classList.replace("alert-primary","alert-success");
+    if (score >= TARGET_SCORE) {
+        results.classList.replace("alert-warning","alert-success");
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
         scoreText.innerText = `You scored: ${score}/100.`;
