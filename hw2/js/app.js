@@ -2,9 +2,10 @@
 const quizForm = document.querySelector("#test-area");
 const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
+const attemptsText = document.querySelector("#total-attempts");
 const TARGET_SCORE = 80;
 var score = 0;
-var attempts = 0;
+var attempts = localStorage.getItem("total_attempts");
 
 // ======== EVENT LISENTERS ========
 // document.querySelector("#submitBtn").addEventListener("click",testAction);
@@ -218,6 +219,9 @@ function gradeQuiz() {
     } else {
         scoreText.innerText = `You scored: ${score}/100.`;
     }
+
+    attemptsText.innerText = `Total attempts: ${++attempts}`;
+    localStorage.setItem("total_attempts", attempts);
 }
 
 
