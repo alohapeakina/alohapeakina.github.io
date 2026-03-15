@@ -1,4 +1,4 @@
-//Global variables
+// ======== GLOBAL VARIABLES ========
 const quizForm = document.querySelector("#test-area");
 const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
@@ -6,11 +6,41 @@ const attemptsText = document.querySelector("#total-attempts");
 const TARGET_SCORE = 80;
 var score = 0;
 var attempts = localStorage.getItem("total_attempts");
+const ANSWER_KEY = {
+    q1: "southdakota",
+    q2: "arizona",
+    q3: "missouri",
+    q4: "superior",
+    q5: "kauai",
+    q6: "false",
+    q7: ["losangeles", "sacramento", "sanfrancisco"],
+    q8: "ak",
+    q9: ["delaware", "de"],
+    q10: "6"
+};
+displayQ4Choices();
+
+
 
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
+document.querySelector("#resetBtn").addEventListener("click",resetQuiz);
 quizForm.addEventListener("change",saveProgress);
 window.addEventListener("load", loadProgress);
+
+
+// ======== CORE LOGIC ========
+
+function displayQ4Choices() {
+    let q4ChoicesArray = ["michigan","superior","erie","huron"];
+    q4ChoicesArray = _.shuffle(q4ChoicesArray);
+    for (let i=0; i < q4ChoicesArray.length; i++) {
+        document.querySelector("#q4Choices").innerHTML += `<input class="form-check-input" type="radio" name="q4" id="q4a${q4ChoicesArray[i]}"
+        value="${q4ChoicesArray[i]}"> <label class="form-check-label" for="q4a${q4ChoicesArray[i]}">${q4ChoicesArray[i]}</label>`
+    }
+}
+
+
 
 // Saves progress to local storage
 function saveProgress() {
@@ -50,6 +80,35 @@ function loadProgress() {
             });
         });
     }
+}
+
+function resetQuiz() {
+    // Removes progress from local storage and clears any text input
+    localStorage.removeItem("quiz_progress");
+    quizForm.reset();
+
+    const questionCount = document.querySelectorAll(".card-body").length;
+    for (let i=1; i<= questionCount; i++) {
+        const feedback = document.querySelector(`#q${i}Feedback`);
+        const mark = document.querySelector(`#markImg${i}`);
+
+        if (feedback) {
+            feedback.innerHTML = "";
+            feedback.className = "";
+        }
+        if (mark) {
+            mark.innerHTML = "";
+        }
+    }
+
+    const validationFdbk = document.querySelector("#validationFdbk");
+    validationFdbk.innerHTML = "";
+    validationFdbk.className = "";
+
+    results.classList.add("d-none");
+
+    score = 0;
+
 }
 
 // Verifies all quiz questions have been answered
@@ -144,7 +203,7 @@ function gradeQuiz() {
     // Grading Q1
     let q1Response = document.querySelector("input[name=q1]:checked").value;
     console.log("Q1 Response is: " + q1Response);
-    if (q1Response == "South Dakota") {
+    if (q1Response == "southdakota") {
         rightAnswer(1);
     } else {
         wrongAnswer(1);
@@ -241,9 +300,10 @@ function displayResults() {
     results.classList.remove("d-none"); // Un-hides the results div
 
     if (score >= TARGET_SCORE) {
-        results.classList.replace("alert-danger","alert-success");
+        results.className = "alert alert-success mt-4";
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
+        results.className = "alert alert-danger mt-4";
         scoreText.innerText = `You scored: ${score}/100.`;
     }
     
