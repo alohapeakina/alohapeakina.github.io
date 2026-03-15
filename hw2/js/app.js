@@ -47,7 +47,7 @@ const QUIZ_SETUP = {
         answer: ["delaware", "de"]
     },
     q10: {
-        answer: "6"
+        answer: "1959-08-21"
     }
 }
 
@@ -148,10 +148,10 @@ function loadProgress() {
     }
 
     // Resets quiz if re-loading a submitted quiz
-    const isSubmitted = localStorage.getItem("quiz_submitted");
-    if (isSubmitted === "true") {
-        resetQuiz();
-    }
+    // const isSubmitted = localStorage.getItem("quiz_submitted");
+    // if (isSubmitted === "true") {
+    //     resetQuiz();
+    // }
 }
 
 // Verifies all quiz questions have been answered
@@ -204,7 +204,8 @@ function rightAnswer(index) {
     
     if (feedback && img) {
         feedback.innerHTML = "Correct!";
-        feedback.className = "bg-success text-white w-100 mt-2 text-center";
+        // feedback.className = "bg-success text-white w-100 mt-2 text-center";
+        feedback.className = "feedback-box feedback-correct";
         img.innerHTML = "<img src='img/checkmark_v2.svg' alt='Checkmark' class='quiz-mark'>";
         score += 10;
     } else {
@@ -223,7 +224,8 @@ function wrongAnswer(index) {
     
     if (feedback && img) {
         feedback.innerHTML = "Incorrect!";
-        feedback.className = "bg-warning text-white w-100 mt-2 text-center";
+        // feedback.className = "bg-warning text-white w-100 mt-2 text-center";
+        feedback.className = "feedback-box feedback-wrong";
         img.innerHTML = "<img src='img/xmark_v2.svg' alt='xmark' class='quiz-mark'>";
     } else {
         console.error(`Could not find UI elements for index ${index}.`);
@@ -305,7 +307,7 @@ function displayResults() {
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
         results.className = "alert alert-danger mt-4 shadow-sm";
-        scoreText.innerText = `You scored: ${score}/100`;
+        scoreText.innerText = `You scored: ${score}/100. Keep studying!`;
     }
     
     // Save result state    
@@ -351,10 +353,13 @@ function resetQuiz() {
     results.classList.add("d-none");
     score = 0;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    })
+    setTimeout(function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }, 10);
 }
 
 function enableSubmitButton() {
