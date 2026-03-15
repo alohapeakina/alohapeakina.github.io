@@ -1,19 +1,30 @@
 //Global variables
 let usernameAvailable = false;
-const STATES = {
-    ca: "California",
-
-}
 
 //Event Listeners
 document.querySelector("#zip").addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 document.querySelector("#username").addEventListener("change", checkUsername);
+window.addEventListener("load",getStates);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
 });
 
 //Functions
+
+//Displays list of states from Web API
+async function getStates() {
+    let url = `https://csumb.space/api/allStatesAPI.php`;
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    console.dir(data);
+    let stateList = document.querySelector("#state");
+    stateList.innerHTML ="<option>Select a State</option>";
+    for (let i=0; i < data.length; i++) {
+        stateList.innerHTML += `<option> ${data[i].state} </option>`;
+    }
+}
 
 //Displaying City from Web API after entering zip code
 async function displayCity() {
