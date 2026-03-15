@@ -69,16 +69,41 @@ function isFormValid() {
 }
 
 function rightAnswer(index) {
-    document.querySelector(`#q${index}Feedback`).innerHTML = "Correct!";
-    document.querySelector(`#q${index}Feedback`).className = "bg-success text-white";
-    document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-    score += 20;
+    console.log("Attempting to update UI for question:", index);
+
+    let feedback = document.querySelector(`#q${index}Feedback`);
+    let img = document.querySelector(`#markImg${index}`);
+    
+    console.log("Feedback element found:", feedback);
+    console.log("Image element found:", img);
+    
+    if (feedback && img) {
+        feedback.innerHTML = "Correct!";
+        feedback.className = "bg-success text-white";
+        img.innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
+        score += 20;
+    } else {
+        console.error(`Could not find UI elements for index ${index}.`);
+    }
+
 }
 
 function wrongAnswer(index) {
-    document.querySelector(`#q${index}Feedback`).innerHTML = "Incorrect!";
-    document.querySelector(`#q${index}Feedback`).className = "bg-warning text-white";
-    document.querySelector(`#markImg${index}`).innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+    console.log("Attempting to update UI for question:", index);
+
+    let feedback = document.querySelector(`#q${index}Feedback`);
+    let img = document.querySelector(`#markImg${index}`);
+
+    console.log("Feedback element found:", feedback);
+    console.log("Image element found:", img);
+
+    if (feedback && img) {
+        feedback.innerHTML = "Incorrect!";
+        feedback.className = "bg-warning text-white";
+        img.innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+    } else {
+        console.error(`Could not find UI elements for index ${index}.`);
+    }
 }
 
 function gradeQuiz() {
@@ -89,30 +114,18 @@ function gradeQuiz() {
     // Grading Q5
     let q5Response = document.querySelector("input[name=q5]:checked").value;
     console.log("Q5 Response is: " + q5Response);
-    // if (q5Response == "South Dakota") {
-    //     document.querySelector("#q5Feedback").innerHTML = "Correct!";
-    //     document.querySelector("#q5Feedback").className = "bg-success text-white";
-    //     document.querySelector("#markImg5").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-    //     score += 20;
-    // } else {
-    //     document.querySelector("#q5Feedback").innerHTML = "Incorrect!";
-    //     document.querySelector("#q5Feedback").className = "bg-warning text-white";
-    //     document.querySelector("#markImg5").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
-    // }
+    if (q5Response == "kauai") {
+        rightAnswer(5);
+    } else {
+        wrongAnswer(5);
+    }
 
     // Grading Q6
     let q6Response = document.querySelector("input[name=q6]:checked").value;
     console.log("Q6 Response is: " + q6Response);
     if (q6Response == "False") {
-        // document.querySelector("#q6Feedback").innerHTML = "Correct!";
-        // document.querySelector("#q6Feedback").className = "bg-success text-white";
-        // document.querySelector("#markImg6").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-        // score += 20;
         rightAnswer(6)
     } else {
-        // document.querySelector("#q6Feedback").innerHTML = "Incorrect!";
-        // document.querySelector("#q6Feedback").className = "bg-warning text-white";
-        // document.querySelector("#markImg6").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
         wrongAnswer(6);
     }
 
@@ -121,54 +134,34 @@ function gradeQuiz() {
     console.log("Q7 Responses are: " + Array.from(q7Response).map(response => response.value));
     if (document.querySelector("#q7LosAngeles").checked && document.querySelector("#q7Sacramento").checked &&
         document.querySelector("#q7SanFrancisco").checked && !document.querySelector("#q7SanDiego").checked) {
-        document.querySelector("#q7Feedback").innerHTML = "Correct!";
-        document.querySelector("#q7Feedback").className = "bg-success text-white";
-        document.querySelector("#markImg7").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-        score += 20;
+        rightAnswer(7);
     } else {
-        document.querySelector("#q7Feedback").innerHTML = "Incorrect!";
-        document.querySelector("#q7Feedback").className = "bg-warning text-white";
-        document.querySelector("#markImg7").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+        wrongAnswer(7);
     }
 
     // Grading Q8
     let q8Response = document.querySelector("#q8a").value;
     console.log("Q8 Response is: " + q8Response);
     if (q8Response == "ak") {
-        document.querySelector("#q8Feedback").innerHTML = "Correct!";
-        document.querySelector("#q8Feedback").className = "bg-success text-white";
-        document.querySelector("#markImg8").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-        score += 20;
+        rightAnswer(8);
     } else {
-        document.querySelector("#q8Feedback").innerHTML = "Incorrect!";
-        document.querySelector("#q8Feedback").className = "bg-warning text-white";
-        document.querySelector("#markImg8").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+        wrongAnswer(8);
     }
 
     let q9Response = document.querySelector("#q9a").value.toLowerCase();
     console.log("Q9 Response is: " + q9Response);
     if (q9Response == "delaware" || q9Response == "de") {
-        document.querySelector("#q9Feedback").innerHTML = "Correct!";
-        document.querySelector("#q9Feedback").className = "bg-success text-white";
-        document.querySelector("#markImg9").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-        score += 20;
+        rightAnswer(9);
     } else {
-        document.querySelector("#q9Feedback").innerHTML = "Incorrect!";
-        document.querySelector("#q9Feedback").className = "bg-warning text-white";
-        document.querySelector("#markImg9").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+        wrongAnswer(9);
     }
 
     let q10Response = document.querySelector("#q10a").value;
     console.log("Q10 Response is: " + q10Response);
     if (q10Response == "6") {
-        document.querySelector("#q10Feedback").innerHTML = "Correct!";
-        document.querySelector("#q10Feedback").className = "bg-success text-white";
-        document.querySelector("#markImg10").innerHTML = "<img src='img/checkmark.png' alt='Checkmark'>";
-        score += 20;
+        rightAnswer(10);
     } else {
-        document.querySelector("#q10Feedback").innerHTML = "Incorrect!";
-        document.querySelector("#q10Feedback").className = "bg-warning text-white";
-        document.querySelector("#markImg10").innerHTML = "<img src='img/xmark.png' alt='xmark'>";
+        wrongAnswer(10);
     }
 
 

@@ -8,3 +8,9 @@ body {
     text-align: center;
     margin: 0 auto;
 }
+
+.responses {
+    justify-content: start;
+    /* text-align: start; */
+    /* margin: 0 auto; */
+}
