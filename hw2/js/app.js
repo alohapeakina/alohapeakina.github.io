@@ -4,34 +4,53 @@ const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
 const attemptsText = document.querySelector("#total-attempts");
 const validationFdbk = document.querySelector("#validationFdbk");
+
 const TARGET_SCORE = 80;
 var score = 0;
+
 var attempts = localStorage.getItem("total_attempts");
 
-// Needed to randomize options for multiple choice questions
-const MULTIPLE_CHOICE_QUESTIONS = {
-    q1: ["North Dakota", "Montana", "South Dakota", "Wyoming"],
-    q2: ["Utah", "Arizona", "New Mexico", "Nevada"],
-    q3: ["Mississippi", "Colorado", "Missouri", "Rio Grande"],
-    q4: ["Michigan", "Superior", "Erie", "Huron"],
-    q5: ["Oahu", "Molokai", "Kauai", "Maui"]
+// Setup for quiz. Options are used to randomize multiple choice questions
+const QUIZ_SETUP = {
+    q1: {
+        options: ["North Dakota", "Montana", "South Dakota", "Wyoming"],
+        answer: "southdakota"
+    },
+    q2: {
+        options: ["Utah", "Arizona", "New Mexico", "Nevada"],
+        answer: "arizona"
+    },
+    q3: {
+        options: ["Mississippi", "Colorado", "Missouri", "Rio Grande"],
+        answer: "missouri"
+    },
+    q4: {
+        options: ["Michigan", "Superior", "Erie", "Huron"],
+        answer: "superior"
+    },
+    q5: {
+        options: ["Oahu", "Molokai", "Kauai", "Maui"],
+        answer: "kauai"
+    },
+    q6: {
+        answer: "false"
+    },
+    q7: {
+        answer: ["losangeles", "sacramento", "sanfrancisco"]
+    },
+    q8: {
+        answer: "ak"
+    },
+    q9: {
+        answer: ["delaware", "de"]
+    },
+    q10: {
+        answer: "6"
+    }
 }
-const quizKeys = Object.keys(MULTIPLE_CHOICE_QUESTIONS);
+
+const quizKeys = Object.keys(QUIZ_SETUP);
 quizKeys.forEach(buildQuestions);
-
-
-const ANSWER_KEY = {
-    q1: "southdakota",
-    q2: "arizona",
-    q3: "missouri",
-    q4: "superior",
-    q5: "kauai",
-    q6: "false",
-    q7: ["losangeles", "sacramento", "sanfrancisco"],
-    q8: "ak",
-    q9: ["delaware", "de"],
-    q10: "6"
-};
 
 // ======== EVENT LISENTERS ========
 document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
@@ -42,11 +61,21 @@ window.addEventListener("load", loadProgress);
 
 // ======== CORE LOGIC ========
 
+// Identifies each question in order to shuffle
+function buildQuestions(qKey) {
+    const config = QUIZ_SETUP[qKey];
+
+    if (config.options) {
+        shuffleChoices(qKey, `#${qKey}Choices`);
+    }
+}
+
+// Performs shuffling of multiple choice options that will be passed into HTML
 function shuffleChoices(qName, elementId) {
     const element = document.querySelector(elementId);
     if (!element) return;
 
-    let choices = _.shuffle(MULTIPLE_CHOICE_QUESTIONS[qName]);
+    let choices = _.shuffle(QUIZ_SETUP[qName].options);
 
     // Ensure the existing container is empty
     element.innerHTML = "";
@@ -58,6 +87,7 @@ function shuffleChoices(qName, elementId) {
     }
 }
 
+// Replaces HTML with shuffled options
 function buildChoiceHTML(qName, choiceText, index) {
     const answerValue = choiceText.toLowerCase().replace(/\s+/g, '');
     const choiceId = `${qName}a${index}`; // This identifies individual response options
@@ -69,9 +99,6 @@ function buildChoiceHTML(qName, choiceText, index) {
         </div>`;
 }
 
-function buildQuestions(qKey) {
-    shuffleChoices(qKey, `#${qKey}Choices`);
-}
 
 
 // Saves progress to local storage
