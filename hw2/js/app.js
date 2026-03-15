@@ -4,6 +4,8 @@ const results = document.querySelector("#results-area");
 const scoreText = document.querySelector("#score-text");
 const attemptsText = document.querySelector("#total-attempts");
 const validationFdbk = document.querySelector("#validationFdbk");
+const submitBtn = document.querySelector("#submitBtn");
+const resetBtn = document.querySelector("#resetBtn");
 
 const TARGET_SCORE = 80;
 var score = 0;
@@ -53,8 +55,8 @@ const quizKeys = Object.keys(QUIZ_SETUP);
 quizKeys.forEach(buildQuestions);
 
 // ======== EVENT LISENTERS ========
-document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
-document.querySelector("#resetBtn").addEventListener("click",resetQuiz);
+submitBtn.addEventListener("click",gradeQuiz);
+resetBtn.addEventListener("click",resetQuiz);
 quizForm.addEventListener("change",saveProgress);
 window.addEventListener("load", loadProgress);
 
@@ -98,8 +100,6 @@ function buildChoiceHTML(qName, choiceText, index) {
             <label class="form-check-label" for="${choiceId}">${choiceText}</label>
         </div>`;
 }
-
-
 
 // Saves progress to local storage
 function saveProgress() {
@@ -148,6 +148,178 @@ function loadProgress() {
     }
 }
 
+
+// Verifies all quiz questions have been answered
+function isFormValid() {
+    
+    const questionCount = document.querySelectorAll(".card-body");
+    let missingQuestions = [];
+    
+    
+    for (let i=1; i<=questionCount.length; i++) {
+        let isAnswered = false;
+        
+        // Gets input for each question
+        const input = document.querySelector(`[name="q${i}"]`);
+        
+        // Verifies presence of response according to input type
+        if (input.type === "radio" || input.type === "checkbox") {
+            isAnswered = document.querySelector(`input[name="q${i}"]:checked`) !== null;
+        } else {
+            isAnswered = input.value.trim() !== "";
+        }
+        
+        if (!isAnswered) {
+            missingQuestions.push(i);
+        }
+    }
+    
+    if (missingQuestions.length > 0) {
+        validationFdbk.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
+        validationFdbk.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
+        return false;
+    }
+    
+    // Extra safety to clear feedback if everything is valid
+    validationFdbk.innerHTML = "";
+    validationFdbk.className = "";
+    
+    return true;
+    
+}
+
+function rightAnswer(index) {
+    console.log("Attempting to update UI for question:", index);
+    
+    let feedback = document.querySelector(`#q${index}Feedback`);
+    let img = document.querySelector(`#markImg${index}`);
+    
+    console.log("Feedback element found:", feedback);
+    console.log("Image element found:", img);
+    
+    if (feedback && img) {
+        feedback.innerHTML = "Correct!";
+        feedback.className = "bg-success text-white w-100 mt-2 text-center";
+        img.innerHTML = "<img src='img/checkmark_v2.svg' alt='Checkmark' class='quiz-mark'>";
+        score += 10;
+    } else {
+        console.error(`Could not find UI elements for index ${index}.`);
+    }
+}
+
+function wrongAnswer(index) {
+    console.log("Attempting to update UI for question:", index);
+    
+    let feedback = document.querySelector(`#q${index}Feedback`);
+    let img = document.querySelector(`#markImg${index}`);
+    
+    console.log("Feedback element found:", feedback);
+    console.log("Image element found:", img);
+    
+    if (feedback && img) {
+        feedback.innerHTML = "Incorrect!";
+        feedback.className = "bg-warning text-white w-100 mt-2 text-center";
+        img.innerHTML = "<img src='img/xmark_v2.svg' alt='xmark' class='quiz-mark'>";
+    } else {
+        console.error(`Could not find UI elements for index ${index}.`);
+    }
+}
+
+// Generalized function to determine if an individual answer is correct
+function isCorrect(userValue, correctValue) {
+    if (Array.isArray(correctValue)) { // Checks if the answer requires multiple selections
+        
+        if (Array.isArray(userValue)) { // Checks if user provided multiple selections
+            if (userValue.length !== correctValue.length) { // If length of arrays don't match, answer can't be correct
+                return false;
+            }
+            
+            for (const val of userValue) {
+                if (!correctValue.includes(val)) { // User included a value that wasn't found in answer key
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        return correctValue.includes(userValue); // Verifies user provided correct answer if there are multiple correct options
+    }
+    
+    return userValue === correctValue;
+}
+
+function gradeQuiz() {
+    console.log("Grading quiz");
+    score = 0;
+    
+    validationFdbk.innerHTML = "";
+    // Check for no missing questions
+    if (!isFormValid()) {
+        return;
+    }
+    
+    for (let i=0; i < quizKeys.length; i++) {
+        
+        const qName = quizKeys[i];
+        const qNumber = i + 1; // User-facing question numbers are offset from quiz number index
+        const config = QUIZ_SETUP[qName];
+        
+        let userResponse;
+        const sampleInput = document.querySelector(`[name="${qName}"]`);
+        
+        if (sampleInput.type === "radio") {
+            const checked = document.querySelector(`input[name="${qName}"]:checked`);
+            userResponse = checked ? checked.value : "";
+        } else if (sampleInput.type === "checkbox") {
+            const checkedBoxes = document.querySelectorAll(`input[name="${qName}"]:checked`);
+            userResponse = [];
+            for (const cb of checkedBoxes) {
+                userResponse.push(cb.value);
+            }
+        } else {
+            userResponse = sampleInput.value.toLowerCase().trim();
+        }
+        
+        if (isCorrect(userResponse, config.answer)) {
+            rightAnswer(qNumber);
+        } else {
+            wrongAnswer(qNumber);
+        }
+    }
+    
+    // Displays results of quiz to user
+    displayResults();
+}
+
+function displayResults() {
+    
+    results.classList.remove("d-none"); // Un-hides the results div
+    
+    if (score >= TARGET_SCORE) {
+        results.className = "alert alert-success mt-4 shadow-sm";
+        scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
+    } else {
+        results.className = "alert alert-danger mt-4 shadow-sm";
+        scoreText.innerText = `You scored: ${score}/100.`;
+    }
+    
+    // Save result state    
+    attempts++;
+    attemptsText.innerText = `Total attempts: ${attempts}`;
+    localStorage.setItem("total_attempts", attempts);
+    localStorage.setItem("quiz_submitted", "true");
+    localStorage.setItem("last_score", score);
+
+    // Disables submit button and shows reset button
+    submitBtn.disabled = true;
+    submitBtn.classList.replace("btn-primary", "btn-secondary");
+    submitBtn.innerText = "Submitted";
+    resetBtn.classList.remove("d-none");
+
+    results.scrollIntoView();
+    
+}
+
 // Removes progress from local storage and clears any text input
 function resetQuiz() {
     localStorage.removeItem("quiz_progress");
@@ -174,168 +346,4 @@ function resetQuiz() {
     results.classList.add("d-none");
     score = 0;
 
-}
-
-// Verifies all quiz questions have been answered
-function isFormValid() {
-
-    const questionCount = document.querySelectorAll(".card-body");
-    let missingQuestions = [];
-
-
-    for (let i=1; i<=questionCount.length; i++) {
-        let isAnswered = false;
-
-        // Gets input for each question
-        const input = document.querySelector(`[name="q${i}"]`);
-
-        // Verifies presence of response according to input type
-        if (input.type === "radio" || input.type === "checkbox") {
-            isAnswered = document.querySelector(`input[name="q${i}"]:checked`) !== null;
-        } else {
-            isAnswered = input.value.trim() !== "";
-        }
-
-        if (!isAnswered) {
-            missingQuestions.push(i);
-        }
-    }
-    
-    if (missingQuestions.length > 0) {
-        validationFdbk.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
-        validationFdbk.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
-        return false;
-    }
-
-    // Extra safety to clear feedback if everything is valid
-    validationFdbk.innerHTML = "";
-    validationFdbk.className = "";
-
-    return true;
-
-}
-
-function rightAnswer(index) {
-    console.log("Attempting to update UI for question:", index);
-
-    let feedback = document.querySelector(`#q${index}Feedback`);
-    let img = document.querySelector(`#markImg${index}`);
-    
-    console.log("Feedback element found:", feedback);
-    console.log("Image element found:", img);
-    
-    if (feedback && img) {
-        feedback.innerHTML = "Correct!";
-        feedback.className = "bg-success text-white w-100 mt-2 text-center";
-        img.innerHTML = "<img src='img/checkmark_v2.svg' alt='Checkmark' class='quiz-mark'>";
-        score += 10;
-    } else {
-        console.error(`Could not find UI elements for index ${index}.`);
-    }
-
-}
-
-function wrongAnswer(index) {
-    console.log("Attempting to update UI for question:", index);
-
-    let feedback = document.querySelector(`#q${index}Feedback`);
-    let img = document.querySelector(`#markImg${index}`);
-
-    console.log("Feedback element found:", feedback);
-    console.log("Image element found:", img);
-
-    if (feedback && img) {
-        feedback.innerHTML = "Incorrect!";
-        feedback.className = "bg-warning text-white w-100 mt-2 text-center";
-        img.innerHTML = "<img src='img/xmark_v2.svg' alt='xmark' class='quiz-mark'>";
-    } else {
-        console.error(`Could not find UI elements for index ${index}.`);
-    }
-}
-
-// Generalized function to determine if an individual answer is correct
-function isCorrect(userValue, correctValue) {
-    if (Array.isArray(correctValue)) { // Checks if the answer requires multiple selections
-        
-        if (Array.isArray(userValue)) { // Checks if user provided multiple selections
-            if (userValue.length !== correctValue.length) { // If length of arrays don't match, answer can't be correct
-                return false;
-            }
-
-            for (const val of userValue) {
-                if (!correctValue.includes(val)) { // User included a value that wasn't found in answer key
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        return correctValue.includes(userValue); // Verifies user provided correct answer if there are multiple correct options
-    }
-
-    return userValue === correctValue;
-}
-
-function gradeQuiz() {
-    console.log("Grading quiz");
-    score = 0;
-
-    validationFdbk.innerHTML = "";
-    // Check for no missing questions
-    if (!isFormValid()) {
-        return;
-    }
-
-    for (let i=0; i < quizKeys.length; i++) {
-
-        const qName = quizKeys[i];
-        const qNumber = i + 1; // User-facing question numbers are offset from quiz number index
-        const config = QUIZ_SETUP[qName];
-
-        let userResponse;
-        const sampleInput = document.querySelector(`[name="${qName}"]`);
-
-        if (sampleInput.type === "radio") {
-            const checked = document.querySelector(`input[name="${qName}"]:checked`);
-            userResponse = checked ? checked.value : "";
-        } else if (sampleInput.type === "checkbox") {
-            const checkedBoxes = document.querySelectorAll(`input[name="${qName}"]:checked`);
-            userResponse = [];
-            for (const cb of checkedBoxes) {
-                userResponse.push(cb.value);
-            }
-        } else {
-            userResponse = sampleInput.value.toLowerCase().trim();
-        }
-
-        if (isCorrect(userResponse, config.answer)) {
-            rightAnswer(qNumber);
-        } else {
-            wrongAnswer(qNumber);
-        }
-    }
-
-    // Displays results of quiz to user
-    displayResults();
-}
-
-function displayResults() {
-
-    results.classList.remove("d-none"); // Un-hides the results div
-
-    // document.querySelector("#submitBtn").setAttribute("disabled");
-
-    if (score >= TARGET_SCORE) {
-        results.className = "alert alert-success mt-4";
-        scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
-    } else {
-        results.className = "alert alert-danger mt-4";
-        scoreText.innerText = `You scored: ${score}/100.`;
-    }
-    
-    attemptsText.innerText = `Total attempts: ${++attempts}`;
-    localStorage.setItem("total_attempts", attempts);
-    
-    document.querySelector("#results-area").scrollIntoView();
-    
 }
