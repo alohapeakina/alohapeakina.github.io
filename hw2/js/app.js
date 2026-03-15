@@ -8,7 +8,6 @@ var score = 0;
 var attempts = localStorage.getItem("total_attempts");
 
 // ======== EVENT LISENTERS ========
-// document.querySelector("#submitBtn").addEventListener("click",testAction);
 document.querySelector("#submitBtn").addEventListener("click",gradeQuiz);
 quizForm.addEventListener("change",saveProgress);
 window.addEventListener("load", loadProgress);
@@ -34,7 +33,6 @@ function saveProgress() {
 }
 
 // Restores progress/answers on a page load
-// TODO: Review splitting quiz loading, which would require rendering refactor
 function loadProgress() {
     const savedResponses = JSON.parse(localStorage.getItem("quiz_progress"));
 
@@ -248,17 +246,3 @@ function gradeQuiz() {
 
     document.querySelector("#results-area").scrollIntoView();
 }
-
-
-// function testAction() {
-
-//     const q1Checked = document.querySelector('input[name="q1"]:checked');
-
-//     if (q1Checked) {
-//         console.log("Something happened. Intentionally even.");
-//         localStorage.setItem("question",q1Checked.value);
-//     } else {
-//         console.log("No answer selected for Q1");
-//     }
-
-// }
