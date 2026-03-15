@@ -124,21 +124,45 @@ function saveProgress() {
 // Restores progress/answers on a page load
 function loadProgress() {
     const savedResponses = JSON.parse(localStorage.getItem("quiz_progress"));
-
-    if (savedResponses) {
-        Object.keys(savedResponses).forEach(question => {
-            const val = savedResponses[question];
-            const input = document.querySelectorAll(`[name="${question}"]`);
-
-            input.forEach(input => {
-                if (Array.isArray(val)) {
-                    if (val.includes(input.value)) input.checked = true;
-                } else {
-                    if (input.value === val) input.checked = true;
-                }
-            });
-        });
+    if (!savedResponses) { // Early return if there is no progress to load
+        return;
     }
+
+    for (const question in savedResponses) {
+        const val = savedResponses[question];
+        const elements = document.querySelectorAll(`[name="${question}"]`);
+
+        for (const option of elements) {
+
+            if (option.type === "radio" || option.type === "checkbox") {
+                if (Array.isArray(val)) {
+                    option.checked = val.includes(option.value);
+                } else {
+                    option.checked = (option.value === val);
+                }
+            } else {
+                option.value = val;
+            }
+
+        }
+
+
+    }
+
+    // if (savedResponses) {
+    //     Object.keys(savedResponses).forEach(question => {
+    //         const val = savedResponses[question];
+    //         const input = document.querySelectorAll(`[name="${question}"]`);
+
+    //         input.forEach(input => {
+    //             if (Array.isArray(val)) {
+    //                 if (val.includes(input.value)) input.checked = true;
+    //             } else {
+    //                 if (input.value === val) input.checked = true;
+    //             }
+    //         });
+    //     });
+    // }
 }
 
 function resetQuiz() {
