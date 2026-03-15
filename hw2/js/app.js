@@ -147,16 +147,12 @@ function loadProgress() {
         }
     }
 
-    //Checks if quiz is in a submitted state
+    // Resets quiz if re-loading a submitted quiz
     const isSubmitted = localStorage.getItem("quiz_submitted");
     if (isSubmitted === "true") {
-        score = parseInt(localStorage.getItem("last_score"));
-        displayResults();
-        attempts--; // Ensures attempts don't increment on refresh
-        localStorage.setItem("total_attempts", attempts);
+        resetQuiz();
     }
 }
-
 
 // Verifies all quiz questions have been answered
 function isFormValid() {
@@ -309,7 +305,7 @@ function displayResults() {
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
         results.className = "alert alert-danger mt-4 shadow-sm";
-        scoreText.innerText = `You scored: ${score}/100.`;
+        scoreText.innerText = `You scored: ${score}/100`;
     }
     
     // Save result state    
@@ -320,10 +316,9 @@ function displayResults() {
     localStorage.setItem("last_score", score);
 
     disableSubmitButton();
-    results.scrollIntoView(
-        {behavior: "smooth"}
-    );
-    
+    results.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 // Removes progress from local storage and clears any text input
@@ -355,6 +350,11 @@ function resetQuiz() {
     enableSubmitButton();
     results.classList.add("d-none");
     score = 0;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
 }
 
 function enableSubmitButton() {
