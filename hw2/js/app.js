@@ -146,6 +146,15 @@ function loadProgress() {
 
         }
     }
+
+    //Checks if quiz is in a submitted state
+    const isSubmitted = localStorage.getItem("quiz_submitted");
+    if (isSubmitted === "true") {
+        score = parseInt(localStorage.getItem("last_score"));
+        displayResults();
+        attempts--; // Ensures attempts don't increment on refresh
+        localStorage.setItem("total_attempts", attempts);
+    }
 }
 
 
@@ -175,7 +184,7 @@ function isFormValid() {
     }
     
     if (missingQuestions.length > 0) {
-        validationFdbk.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
+        validationFdbk.innerHTML = `These questions are missing answers:<br>${missingQuestions.join(", ")}`;
         validationFdbk.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
         return false;
     }
@@ -310,19 +319,19 @@ function displayResults() {
     localStorage.setItem("quiz_submitted", "true");
     localStorage.setItem("last_score", score);
 
-    // Disables submit button and shows reset button
-    submitBtn.disabled = true;
-    submitBtn.classList.replace("btn-primary", "btn-secondary");
-    submitBtn.innerText = "Submitted";
-    resetBtn.classList.remove("d-none");
-
-    results.scrollIntoView();
+    disableSubmitButton();
+    results.scrollIntoView(
+        {behavior: "smooth"}
+    );
     
 }
 
 // Removes progress from local storage and clears any text input
 function resetQuiz() {
     localStorage.removeItem("quiz_progress");
+    localStorage.removeItem("quiz_submitted");
+    localStorage.removeItem("last_score");
+
     quizForm.reset();
 
     // Clears any feedback from individual questions
@@ -343,7 +352,21 @@ function resetQuiz() {
     // Resets overall feedback and results section
     validationFdbk.innerHTML = "";
     validationFdbk.className = "";
+    enableSubmitButton();
     results.classList.add("d-none");
     score = 0;
+}
 
+function enableSubmitButton() {
+    submitBtn.disabled = false;
+    submitBtn.classList.replace("btn-secondary", "btn-primary");
+    submitBtn.innerText = "Submit Quiz";
+    resetBtn.classList.add("invisible");
+}
+
+function disableSubmitButton() {
+    submitBtn.disabled = true;
+    submitBtn.classList.replace("btn-primary", "btn-secondary");
+    submitBtn.innerText = "Submitted";
+    resetBtn.classList.remove("invisible");
 }
