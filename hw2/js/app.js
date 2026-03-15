@@ -227,7 +227,7 @@ function rightAnswer(index) {
     if (feedback && img) {
         feedback.innerHTML = "Correct!";
         feedback.className = "bg-success text-white w-100 mt-2 text-center";
-        img.innerHTML = "<img src='img/checkmark.png' alt='Checkmark' class='quiz-mark'>";
+        img.innerHTML = "<img src='img/checkmark_v2.svg' alt='Checkmark' class='quiz-mark'>";
         score += 10;
     } else {
         console.error(`Could not find UI elements for index ${index}.`);
@@ -247,7 +247,7 @@ function wrongAnswer(index) {
     if (feedback && img) {
         feedback.innerHTML = "Incorrect!";
         feedback.className = "bg-warning text-white w-100 mt-2 text-center";
-        img.innerHTML = "<img src='img/xmark.png' alt='xmark' class='quiz-mark'>";
+        img.innerHTML = "<img src='img/xmark_v2.svg' alt='xmark' class='quiz-mark'>";
     } else {
         console.error(`Could not find UI elements for index ${index}.`);
     }
@@ -322,6 +322,8 @@ function gradeQuiz() {
 function displayResults() {
 
     results.classList.remove("d-none"); // Un-hides the results div
+
+    // document.querySelector("#submitBtn").setAttribute("disabled");
 
     if (score >= TARGET_SCORE) {
         results.className = "alert alert-success mt-4";
