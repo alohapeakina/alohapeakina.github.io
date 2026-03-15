@@ -56,17 +56,41 @@ function loadProgress() {
 
 // Verifies all quiz questions have been answered
 function isFormValid() {
-    let isValid = false;
-    
-    if (document.querySelector('input[name="q1"]:checked')) {
-        isValid=true;
-        console.log("isValid value (early return) = " + isValid)
-        return isValid;
+
+    let feedback = document.querySelector("#validationFdbk");
+    const questionCount = document.querySelectorAll(".card-body");
+    let missingQuestions = [];
+
+
+    for (let i=1; i<=questionCount.length; i++) {
+        let isAnswered = false;
+
+        // Finds all questions via name
+        const input = document.querySelectorAll(`[name="q${i}"]`);
+
+        // Verifies presence of response according to input type
+        if (input[0].type === "radio" || input[0].type === "checkbox") {
+            isAnswered = document.querySelector(`input[name="q${i}"]:checked`) !== null;
+        } else {
+            isAnswered = input[0].value.trim() !== "";
+        }
+
+        if (!isAnswered) {
+            missingQuestions.push(i);
+        }
     }
     
-    document.querySelector("#validationFdbk").innerHTML = "Question 1 was not answered";
-    console.log("isValid value (escaped) = " + isValid)
-    return isValid;
+    if (missingQuestions.length > 0) {
+        feedback.innerHTML = `These questions are missing answers: ${missingQuestions.join(", ")}`;
+        feedback.className = "bg-danger text-white w-100 p-2 mt-3 text-center rounded";
+        return false;
+    }
+
+    feedback.innerHTML = "";
+    feedback.className = "";
+
+    return true;
+
 }
 
 function rightAnswer(index) {
@@ -213,7 +237,7 @@ function gradeQuiz() {
     // ========== DISPLAY RESULTS ==========
     results.classList.remove("d-none"); // Un-hides the results div
     if (score >= TARGET_SCORE) {
-        results.classList.replace("alert-warning","alert-success");
+        results.classList.replace("alert-danger","alert-success");
         scoreText.innerText = `You scored: ${score}/100. Congratulations!`;  // Special congratulations if score is at least 80%
     } else {
         scoreText.innerText = `You scored: ${score}/100.`;
@@ -221,6 +245,8 @@ function gradeQuiz() {
 
     attemptsText.innerText = `Total attempts: ${++attempts}`;
     localStorage.setItem("total_attempts", attempts);
+
+    document.querySelector("#results-area").scrollIntoView();
 }
 
 
