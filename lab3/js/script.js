@@ -1,5 +1,6 @@
 //Global variables
 let usernameAvailable = false;
+let validZip = false;
 const REQUIRED_PWD_LENGTH = 6;
 const passwordField = document.querySelector("#password");
 const usernameField = document.querySelector("#username");
@@ -33,10 +34,6 @@ async function getStates() {
 
 //Displaying City from Web API after entering zip code
 async function displayCity() {
-    // let zipCode = document.querySelector("#zip").value;
-    // let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
-    // let response = await fetch(url);
-    // let data = await response.json();
     let data = await getZip();
     if (data) {
         document.querySelector("#city").innerHTML = data.city;
@@ -106,9 +103,11 @@ async function getZip() {
 
     if (!data || data ===false) {
         zipCodeField.classList.add("is-invalid");
+        validZip = false;
         return false;
     } else {
         zipCodeField.classList.remove("is-invalid");
+        validZip = true;
         return data;
     }
 
@@ -126,6 +125,11 @@ function validateForm(e) {
     // Clear previous messages
     usernameError.innerHTML = "";
     passwordError.innerHTML = "";
+
+    // Validates zip code
+    if (validZip == false) {
+        isValid = false;
+    }
 
     // Validates username
     if (username.length === 0) {
