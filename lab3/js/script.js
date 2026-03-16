@@ -1,10 +1,12 @@
 //Global variables
 let usernameAvailable = false;
+const REQUIRED_PWD_LENGTH = 6;
 
 //Event Listeners
 document.querySelector("#zip").addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 document.querySelector("#username").addEventListener("change", checkUsername);
+document.querySelector("#password").addEventListener("click",suggestPassword);
 window.addEventListener("load",getStates);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
@@ -42,9 +44,6 @@ async function displayCity() {
 //Displaying counties from Web API based on the two-letter abbreviation of a state
 async function displayCounties() {
     let state = document.querySelector("#state").value;
-    // let state = document.querySelector("#state");
-    // stateCode = state.usps;
-    // console.log(stateCode);
     console.log(state);
     console.dir(state);
     let url = `https://csumb.space/api/countyListAPI.php?state=${state}`;
@@ -77,32 +76,53 @@ async function checkUsername() {
     }
 }
 
+async function suggestPassword() {
+    let password = document.querySelector("#password").value;
+    let url = `https://csumb.space/api/suggestedPassword.php?length=${REQUIRED_PWD_LENGTH}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    let suggestedPwd = document.querySelector("#suggestedPwd");
+    if (data.available) {
+        suggestedPwd.innerHTML = "No suggestions available";
+    } else {
+        suggestedPwd.innerHTML = "Suggested Password: " + data.password;
+    }
+}
+
 //Validating form data
 function validateForm(e) {
     let isValid = true;
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
+    let passwordCheck = document.querySelector("#passwordCheck").value;
     console.log("Password value is: " + password);
 
     let usernameError = document.querySelector("#usernameError");
     let passwordError = document.querySelector("#passwordError");
 
     // Clear previous messages
-    usernameError.textContent = "";
-    passwordError.textContent = "";
+    usernameError.innerHTML = "";
+    passwordError.innerHTML = "";
 
     if (username.length === 0) {
-        usernameError.textContent = "Username Required!";
+        usernameError.innerHTML = "Username Required!";
         usernameError.style.color = "red";
         isValid = false;
     } else if (!usernameAvailable) {
-        usernameError.textContent = "Username is taken!";
+        usernameError.innerHTML = "Username is taken!";
         usernameError.style.color = "red";
          isValid = false;
     }
 
     if (password.length < 6) {
-        passwordError.textContent = "Password must be at least 6 characters";
+        passwordError.innerHTML = "Password must be at least 6 characters";
+        passwordError.style.color = "red";
+        isValid = false;
+    }
+
+    if (password !== passwordCheck) {
+        passwordError.innerHTML += "<br> Passwords do not match";
+        passwordError.style.color = "red";
         isValid = false;
     }
 
