@@ -1,0 +1,21 @@
+#signupForm {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#signupForm .col-sm-4 {
+    text-align: right;
+    padding-right: 15px;
+}
+
+#signupForm span {
+    display: inline-block;
+    padding: 0.375rem 0;
+    font-weight: bold;
+}
+
+#signupForm .form-control, #signupForm .form-select {
+    width: 100%;
+    max-width: 300px;
+}
