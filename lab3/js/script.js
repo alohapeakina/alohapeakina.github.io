@@ -67,6 +67,8 @@ async function checkUsername() {
     let data = await response.json();
     let usernameError = document.querySelector("#usernameError");
 
+    usernameError.innerHTML = "";  // Clears error field when checking to prevent stale data from sticking
+
     console.log(data);
 
     if (data.available) {
@@ -87,10 +89,10 @@ async function suggestPassword() {
     let response = await fetch(url);
     let data = await response.json();
     let suggestedPwd = document.querySelector("#suggestedPwd");
-    if (data.available) {
-        suggestedPwd.innerHTML = "No suggestions available";
-    } else {
+    if (data.password) {
         suggestedPwd.innerHTML = "Suggested Password: " + data.password;
+    } else {
+        suggestedPwd.innerHTML = "No suggestions available";
     }
 }
 
