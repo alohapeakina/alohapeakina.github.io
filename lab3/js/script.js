@@ -62,13 +62,17 @@ async function displayCounties() {
 //Checks if username is available
 async function checkUsername() {
     let username = usernameField.value;
+    let usernameError = document.querySelector("#usernameError");
+    
+    // Clears error field if no data to check
+    if (username.length === 0) {
+        usernameError.innerHTML = "";
+        return;
+    }
+    
     let url = `https://csumb.space/api/usernamesAPI.php?username=${username}`;
     let response = await fetch(url);
     let data = await response.json();
-    let usernameError = document.querySelector("#usernameError");
-
-    usernameError.innerHTML = "";  // Clears error field when checking to prevent stale data from sticking
-
     console.log(data);
 
     if (data.available) {
