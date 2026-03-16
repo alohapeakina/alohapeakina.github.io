@@ -19,8 +19,6 @@ async function getStates() {
     let url = `https://csumb.space/api/allStatesAPI.php`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
-    console.dir(data);
     let stateList = document.querySelector("#state");
     stateList.innerHTML ="<option>Select a State</option>";
     for (let i=0; i < data.length; i++) {
@@ -31,11 +29,9 @@ async function getStates() {
 //Displaying City from Web API after entering zip code
 async function displayCity() {
     let zipCode = document.querySelector("#zip").value;
-    // console.log(zipCode);
     let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
     document.querySelector("#city").innerHTML = data.city;
     document.querySelector("#latitude").innerHTML = data.latitude;
     document.querySelector("#longitude").innerHTML = data.longitude;
@@ -44,8 +40,6 @@ async function displayCity() {
 //Displaying counties from Web API based on the two-letter abbreviation of a state
 async function displayCounties() {
     let state = document.querySelector("#state").value;
-    console.log(state);
-    console.dir(state);
     let url = `https://csumb.space/api/countyListAPI.php?state=${state}`;
     let response = await fetch(url);
     let data = await response.json();
@@ -95,8 +89,6 @@ function validateForm(e) {
     let username = document.querySelector("#username").value;
     let password = document.querySelector("#password").value;
     let passwordCheck = document.querySelector("#passwordCheck").value;
-    console.log("Password value is: " + password);
-
     let usernameError = document.querySelector("#usernameError");
     let passwordError = document.querySelector("#passwordError");
 
@@ -115,13 +107,13 @@ function validateForm(e) {
     }
 
     if (password.length < 6) {
-        passwordError.innerHTML = "Password must be at least 6 characters";
+        passwordError.innerHTML = "Password must be at least 6 characters <br>";
         passwordError.style.color = "red";
         isValid = false;
     }
 
     if (password !== passwordCheck) {
-        passwordError.innerHTML += "<br> Passwords do not match";
+        passwordError.innerHTML += "Passwords do not match";
         passwordError.style.color = "red";
         isValid = false;
     }
