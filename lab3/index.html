@@ -9,7 +9,9 @@
 </head>
 <body>
     <form id ="signupForm" action="welcome.html">
-        <h1> Sign Up </h1>
+        <header>
+            <h1>Sign Up</h1>
+        </header>
 
         <div class="form-group" id="personalInformation">
             <div class="row">
@@ -89,13 +91,11 @@
                 <label for="username" class="col-sm-4 col-form-label">Desired Username</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="username" placeholder="Username">
-                    <span id="usernameError"></span>
+                    <div class="invalid-feedback" id="usernameError"></span>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="password" class="col-sm-4 col-form-label">Password</label>
-                <!-- <div class="col-sm-8">
-                </div> -->
                 <div class="col-sm-8 d-flex align-items-center">
                     <input type="password" class="form-control me-2 flex-shrink-0" id="password" placeholder="Password">
                     <span id="suggestedPwd" class="text-nowrap"></span>
@@ -105,12 +105,18 @@
                 <label for="passwordCheck" class="col-sm-4 col-form-label">Type Password Again</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" id="passwordCheck">
-                    <span id="passwordError"></span>
+                    <div class="invalid-feedback" id="passwordError"></span>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign up!</button>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">Sign up!</button>
+
     </form>
+    <footer>
+        <hr>
+        CST336 Internet Programming. 2026&copy; Lee <br>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>
