@@ -99,6 +99,7 @@ function validateForm(e) {
     usernameError.innerHTML = "";
     passwordError.innerHTML = "";
 
+    // Validates username
     if (username.length === 0) {
         usernameError.innerHTML = "Username Required!";
         usernameError.style.color = "red";
@@ -109,6 +110,7 @@ function validateForm(e) {
          isValid = false;
     }
 
+    // Validates pasword
     if (password.length < 6) {
         passwordError.innerHTML = "Password must be at least 6 characters <br>";
         passwordError.style.color = "red";
