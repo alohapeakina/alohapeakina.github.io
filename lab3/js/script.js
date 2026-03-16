@@ -4,9 +4,10 @@ const REQUIRED_PWD_LENGTH = 6;
 const passwordField = document.querySelector("#password");
 const usernameField = document.querySelector("#username");
 const passwordCheckField = document.querySelector("#passwordCheck");
+const zipCodeField = document.querySelector("#zip");
 
 //Event Listeners
-document.querySelector("#zip").addEventListener("change",displayCity);
+zipCodeField.addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 usernameField.addEventListener("change", checkUsername);
 passwordField.addEventListener("click",suggestPassword);
@@ -22,6 +23,7 @@ async function getStates() {
     let url = `https://csumb.space/api/allStatesAPI.php`;
     let response = await fetch(url);
     let data = await response.json();
+    // let data = getZip();
     let stateList = document.querySelector("#state");
     stateList.innerHTML ="<option>Select a State</option>";
     for (let i=0; i < data.length; i++) {
@@ -31,13 +33,20 @@ async function getStates() {
 
 //Displaying City from Web API after entering zip code
 async function displayCity() {
-    let zipCode = document.querySelector("#zip").value;
-    let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    document.querySelector("#city").innerHTML = data.city;
-    document.querySelector("#latitude").innerHTML = data.latitude;
-    document.querySelector("#longitude").innerHTML = data.longitude;
+    // let zipCode = document.querySelector("#zip").value;
+    // let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
+    // let response = await fetch(url);
+    // let data = await response.json();
+    let data = await getZip();
+    if (data) {
+        document.querySelector("#city").innerHTML = data.city;
+        document.querySelector("#latitude").innerHTML = data.latitude;
+        document.querySelector("#longitude").innerHTML = data.longitude;
+    } else {
+        document.querySelector("#city").innerHTML = "";
+        document.querySelector("#latitude").innerHTML = "";
+        document.querySelector("#longitude").innerHTML = "";
+    }
 }
 
 //Displaying counties from Web API based on the two-letter abbreviation of a state
@@ -60,6 +69,8 @@ async function checkUsername() {
     let response = await fetch(url);
     let data = await response.json();
     let usernameError = document.querySelector("#usernameError");
+
+    console.log(data);
 
     if (data.available) {
         usernameError.innerHTML = "Username available!";
@@ -84,6 +95,23 @@ async function suggestPassword() {
     } else {
         suggestedPwd.innerHTML = "Suggested Password: " + data.password;
     }
+}
+
+async function getZip() {
+
+    let zipCode = zipCodeField.value;
+    let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
+    let response = await fetch(url);
+    let data = await response.json();
+
+    if (!data || data ===false) {
+        zipCodeField.classList.add("is-invalid");
+        return false;
+    } else {
+        zipCodeField.classList.remove("is-invalid");
+        return data;
+    }
+
 }
 
 //Validating form data
