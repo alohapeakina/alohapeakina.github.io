@@ -1,12 +1,15 @@
 //Global variables
 let usernameAvailable = false;
 const REQUIRED_PWD_LENGTH = 6;
+const passwordField = document.querySelector("#password");
+const usernameField = document.querySelector("#username");
+const passwordCheckField = document.querySelector("#passwordCheck");
 
 //Event Listeners
 document.querySelector("#zip").addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
-document.querySelector("#username").addEventListener("change", checkUsername);
-document.querySelector("#password").addEventListener("click",suggestPassword);
+usernameField.addEventListener("change", checkUsername);
+passwordField.addEventListener("click",suggestPassword);
 window.addEventListener("load",getStates);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
@@ -52,7 +55,7 @@ async function displayCounties() {
 
 //Checks if username is available
 async function checkUsername() {
-    let username = document.querySelector("#username").value;
+    let username = usernameField.value;
     let url = `https://csumb.space/api/usernamesAPI.php?username=${username}`;
     let response = await fetch(url);
     let data = await response.json();
@@ -71,7 +74,7 @@ async function checkUsername() {
 }
 
 async function suggestPassword() {
-    let password = document.querySelector("#password").value;
+    let password = passwordField.value;
     let url = `https://csumb.space/api/suggestedPassword.php?length=${REQUIRED_PWD_LENGTH}`;
     let response = await fetch(url);
     let data = await response.json();
@@ -86,9 +89,9 @@ async function suggestPassword() {
 //Validating form data
 function validateForm(e) {
     let isValid = true;
-    let username = document.querySelector("#username").value;
-    let password = document.querySelector("#password").value;
-    let passwordCheck = document.querySelector("#passwordCheck").value;
+    let username = usernameField.value;
+    let password = passwordField.value;
+    let passwordCheck = passwordCheckField.value;
     let usernameError = document.querySelector("#usernameError");
     let passwordError = document.querySelector("#passwordError");
 
