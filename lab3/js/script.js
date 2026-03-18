@@ -141,7 +141,9 @@ function validateForm(e) {
     if (username.length === 0 || !usernameAvailable) {
         usernameField.classList.add("is-invalid");
         isValid = false;
-    } 
+    }  else {
+        usernameField.classList.add("is-valid");
+    }
 
     // Validates pasword
     if (password.length < 6) {

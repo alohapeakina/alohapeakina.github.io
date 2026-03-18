@@ -98,15 +98,13 @@
             <div class="row mb-3">
                 <label for="password" class="col-sm-4 col-form-label">Password</label>
                 <div class="col-sm-8">
-                    <div class="d-flex align-items-center mb-1">
                         <input type="password" class="form-control me-2 flex-shrink-0" id="password" placeholder="Password">
-                        <span id="suggestedPwd" class="text-nowrap"></span>
-                    </div>
+                         <div id="suggestedPwd" class="col-auto small text-muted mt-1"></div>
                         <div class="invalid-feedback" id="passwordError">Password must be 6 characters</div>
                 </div>
             </div>
             <div class="row">
-                <label for="passwordCheck" class="col-sm-4 col-form-label">Type Password Again</label>
+                <label for="passwordCheck" class="col-sm-4 col-form-label text-nowrap">Type Password Again</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" id="passwordCheck">
                     <div class="invalid-feedback" id="passwordCheckError">Passwords do not match</div>

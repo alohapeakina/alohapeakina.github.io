@@ -21,10 +21,6 @@ body {
     flex-grow: 1;
 }
 
-.is-invalid ~ .invalid-feedback {
-    display:block;
-}
-
 #signupForm .col-sm-4 {
     text-align: right;
     padding-right: 15px;
