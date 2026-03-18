@@ -15,21 +15,21 @@
 
         <div class="form-group" id="personalInformation">
             <div class="row">
-                <label for="fName" class="col-sm-4 col-form-label">First Name</label>
-                <div class="col-sm-8">
+                <label for="fName" class="col-sm-5 col-form-label">First Name</label>
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="fName" placeholder="First Name">
                 </div>
             </div>
             <div class="row">
-                <label for="lName" class="col-sm-4 col-form-label">Last Name</label>
-                <div class="col-sm-8">
+                <label for="lName" class="col-sm-5 col-form-label">Last Name</label>
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="lName" placeholder="Last Name">
                 </div>
             </div>
 
             <div class="row mb-3 align-items-center">
-                <label class="col-sm-4 col-form-label text-sm-end">Gender</label>
-                    <div class="col-sm-8 d-flex gap-3"> <div class="form-check">
+                <label class="col-sm-5 col-form-label text-sm-end">Gender</label>
+                    <div class="col-sm-7 d-flex gap-3"> <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="genderM" value="m">
                         <label class="form-check-label" for="genderM">Male</label>
                     </div>
@@ -47,40 +47,40 @@
 
         <div class="form-group" id="location">
             <div class="row">
-                <label for="zip" class="col-sm-4 col-form-label">Zip Code</label>
-                <div class="col-sm-8">
+                <label for="zip" class="col-sm-5 col-form-label">Zip Code</label>
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code">
                     <div class="invalid-feedback" id="invalidZip" name="invalidZip">Please provide a valid zip</div>
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="city" class="col-sm-4 col-form-label">City</label>
-                <div class="col-sm-8">
+                <label for="city" class="col-sm-5 col-form-label">City</label>
+                <div class="col-sm-7">
                     <span id="city"></span>
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="latitude" class="col-sm-4 col-form-label">Latitude</label>
-                <div class="col-sm-8">
+                <label for="latitude" class="col-sm-5 col-form-label">Latitude</label>
+                <div class="col-sm-7">
                     <span id="latitude"></span>
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="longitude" class="col-sm-4 col-form-label">Longitude</label>
-                <div class="col-sm-8">
+                <label for="longitude" class="col-sm-5 col-form-label">Longitude</label>
+                <div class="col-sm-7">
                     <span id="longitude"></span>
                 </div>
             </div>
 
             <div class="row mb-2">
-                <label for="state" class="col-sm-4 col-form-label">State</label>
-                <div class="col-sm-8">
+                <label for="state" class="col-sm-5 col-form-label">State</label>
+                <div class="col-sm-7">
                     <select class="form-control" id="state" name="state"></select>
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="county" class="col-sm-4 col-form-label">County</label>
-                <div class="col-sm-8">
+                <label for="county" class="col-sm-5 col-form-label">County</label>
+                <div class="col-sm-7">
                     <select class="form-control" id="county" name="county"></select>
                 </div>
             </div>
@@ -88,26 +88,28 @@
 
         <div class="form-group" id="accountInformation">
             <div class="row">
-                <label for="username" class="col-sm-4 col-form-label">Desired Username</label>
-                <div class="col-sm-8">
+                <label for="username" class="col-sm-5 col-form-label">Desired Username</label>
+                <div class="col-sm-7">
                     <input type="text" class="form-control" id="username" placeholder="Username">
-                    <div class="invalid-feedback" id="usernameError">Username is taken</div>
-                    <div class="valid-feedback" id="usernameSuccess">Username available!</div>
+                    <div class="invalid-feedback" id="usernameError">Username is required</div>
+                    <div class="valid-feedback" id="usernameSuccess">Username is available!</div>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="password" class="col-sm-4 col-form-label">Password</label>
-                <div class="col-sm-8">
+                <label for="password" class="col-sm-5 col-form-label">Password</label>
+                <div class="col-sm-7">
                         <input type="password" class="form-control me-2 flex-shrink-0" id="password" placeholder="Password">
                          <div id="suggestedPwd" class="col-auto small text-muted mt-1"></div>
                         <div class="invalid-feedback" id="passwordError">Password must be 6 characters</div>
+                        <div class="valid-feedback"></div>
                 </div>
             </div>
             <div class="row">
-                <label for="passwordCheck" class="col-sm-4 col-form-label text-nowrap">Type Password Again</label>
-                <div class="col-sm-8">
+                <label for="passwordCheck" class="col-sm-5 col-form-label text-nowrap">Type Password Again</label>
+                <div class="col-sm-7">
                     <input type="password" class="form-control" id="passwordCheck">
                     <div class="invalid-feedback" id="passwordCheckError">Passwords do not match</div>
+                    <div class="valid-feedback"></div>
                 </div>
             </div>
         </div>

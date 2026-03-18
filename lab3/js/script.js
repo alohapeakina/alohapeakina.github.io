@@ -2,6 +2,8 @@
 let usernameAvailable = false;
 let validZip = false;
 const REQUIRED_PWD_LENGTH = 6;
+const fNameField = document.querySelector("#fName");
+const lNameField = document.querySelector("#lName");
 const passwordField = document.querySelector("#password");
 const usernameField = document.querySelector("#username");
 const passwordCheckField = document.querySelector("#passwordCheck");
@@ -24,7 +26,6 @@ async function getStateList() {
     let url = `https://csumb.space/api/allStatesAPI.php`;
     let response = await fetch(url);
     let data = await response.json();
-    // let data = getZip();
     let stateList = document.querySelector("#state");
     stateList.innerHTML ="<option>Select a State</option>";
     for (let i=0; i < data.length; i++) {
@@ -62,11 +63,15 @@ async function displayCounties() {
 //Checks if username is available
 async function checkUsername() {
     let username = usernameField.value;
+    let usernameErrorField = document.querySelector("#usernameError");
+    let usernameSuccessField = document.querySelector("#usernameSuccess");
     
-    // Clears error field if no data to check
+    // Resets to default if no username is entered
     if (username.length === 0) {
-        usernameField.classList.remove("is-valid");
-        usernameField.classList.remove("is-invalid");
+        usernameField.classList.remove("is-valid", "is-invalid");
+        usernameErrorField.innerHTML = "Username is required";
+        usernameSuccessField.innerHTML = "Username is available!"
+        usernameAvailable = false;
         return;
     }
     
@@ -83,6 +88,7 @@ async function checkUsername() {
     else {
         usernameField.classList.remove("is-valid");
         usernameField.classList.add("is-invalid");
+        usernameErrorField.innerHTML = "Username is taken";
         usernameAvailable = false;
     }
 }
@@ -101,18 +107,32 @@ async function suggestPassword() {
 }
 
 async function getZip() {
-
     let zipCode = zipCodeField.value;
+    let invalidZip = document.querySelector("#invalidZip");
+
+    // Removes validation text if zip field is empty
+    if (zipCode.length === 0) {
+        zipCodeField.classList.remove("is-valid", "is-invalid");
+        validZip = false;
+        return;
+    }
+
+
     let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
     let response = await fetch(url);
     let data = await response.json();
 
-    if (!data || data ===false) {
+
+    if (!data || data === false) {
+        zipCodeField.classList.remove("is-valid");
         zipCodeField.classList.add("is-invalid");
+        invalidZip.innerHTML = "Please enter a valid zip";
         validZip = false;
         return false;
     } else {
         zipCodeField.classList.remove("is-invalid");
+        zipCodeField.classList.add("is-valid");
+        invalidZip.innerHTML = "";
         validZip = true;
         return data;
     }
@@ -121,42 +141,64 @@ async function getZip() {
 
 //Validating form data
 function validateForm(e) {
+    e.preventDefault(); // Defaults to preventing submission unless all checks are passed
     let isValid = true;
     let username = usernameField.value;
     let password = passwordField.value;
     let passwordCheck = passwordCheckField.value;
+    let usernameErrorField = document.querySelector("#usernameError");
+    let invalidZip = document.querySelector("#invalidZip");
 
     // Clear previous messages
-    usernameField.classList.remove("is-invalid","is-valid");
     passwordField.classList.remove("is-invalid","is-valid");
     passwordCheckField.classList.remove("is-invalid","is-valid");
+    zipCodeField.classList.remove("is-invalid");
 
 
-    // Validates zip code
-    if (validZip == false) {
+    // Zip code validation
+    if (zipCodeField.value.trim() === "") {
+        zipCodeField.classList.add("is-invalid");
+        zipCodeField.classList.remove("is-valid");
+        invalidZip.innerHTML = "Zip code is required";
         isValid = false;
+    } else if (!validZip) {
+        isValid = false;
+    } else {
+        zipCodeField.classList.add("is-valid");
     }
 
-    // Validates username
-    if (username.length === 0 || !usernameAvailable) {
+    // Username validation
+    if (username.length === 0) {
         usernameField.classList.add("is-invalid");
+        usernameErrorField.innerHTML = "Username is required";
         isValid = false;
-    }  else {
+    } else if (!usernameAvailable) {
+        usernameField.classList.add("is-invalid");
+        usernameErrorField.innerHTML = "Username is taken";
+        isValid = false;
+    } 
+    else {
+        usernameField.classList.remove("is-invalid");
         usernameField.classList.add("is-valid");
     }
 
-    // Validates pasword
-    if (password.length < 6) {
+    // Password Validation
+    if (password.length < REQUIRED_PWD_LENGTH) {
         passwordField.classList.add("is-invalid");
         isValid = false;
+    } else {
+        passwordField.classList.add("is-valid");
     }
 
-    if (password !== passwordCheck) {
+    if (password !== passwordCheck || passwordCheck.length === 0) {
         passwordCheckField.classList.add("is-invalid");
         isValid = false;
+    } else {
+        passwordCheckField.classList.add("is-valid");
     }
 
-    if (!isValid) {
-        e.preventDefault();
+    // Submits form if valid
+    if (isValid) {
+        e.target.submit();
     }
 }

@@ -21,7 +21,7 @@ body {
     flex-grow: 1;
 }
 
-#signupForm .col-sm-4 {
+#signupForm .col-sm-5 {
     text-align: right;
     padding-right: 15px;
 }
@@ -44,7 +44,6 @@ body {
 }
 
 #usernameError, #suggestedPwd, #passwordError {
-    display: inline-block;
     font-size: 0.85rem;
     vertical-align: middle;
 }
