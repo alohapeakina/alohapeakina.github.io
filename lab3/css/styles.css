@@ -25,12 +25,6 @@ body {
     padding-right: 15px;
 }
 
-#signupForm span {
-    display: inline-block;
-    padding: 0.375rem 0;
-    font-weight: bold;
-}
-
 #signupForm .row {
     margin-bottom: 1.1rem;
 }

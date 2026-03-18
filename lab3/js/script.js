@@ -37,13 +37,13 @@ async function getStateList() {
 async function displayCity() {
     let data = await getZip();
     if (data) {
-        document.querySelector("#city").innerHTML = data.city;
-        document.querySelector("#latitude").innerHTML = data.latitude;
-        document.querySelector("#longitude").innerHTML = data.longitude;
+        document.querySelector("#city").value = data.city;
+        document.querySelector("#latitude").value = data.latitude;
+        document.querySelector("#longitude").value = data.longitude;
     } else {
-        document.querySelector("#city").innerHTML = "";
-        document.querySelector("#latitude").innerHTML = "";
-        document.querySelector("#longitude").innerHTML = "";
+        document.querySelector("#city").value = "";
+        document.querySelector("#latitude").value = "";
+        document.querySelector("#longitude").value = "";
     }
 }
 
@@ -141,7 +141,6 @@ async function getZip() {
 
 //Validating form data
 function validateForm(e) {
-    e.preventDefault(); // Defaults to preventing submission unless all checks are passed
     let isValid = true;
     let fName = fNameField.value;
     let lName = lNameField.value;
@@ -219,7 +218,7 @@ function validateForm(e) {
     }
 
     // Submits form if valid
-    if (isValid) {
-        e.target.submit();
+    if (!isValid) {
+        e.preventDefault();
     }
 }
