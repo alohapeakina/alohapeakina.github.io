@@ -1,5 +1,4 @@
 // ====== GLOBAL VARIABLES ======
-getStateList();
 let usernameAvailable = false;
 let validZip = false;
 const REQUIRED_PWD_LENGTH = 6;
@@ -15,10 +14,10 @@ zipCodeField.addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 usernameField.addEventListener("change", checkUsername);
 passwordField.addEventListener("click",suggestPassword);
-// window.addEventListener("load",getStateList);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
 });
+getStateList(); // Not an event listener, but calling directly to load the list of states
 
 // ====== FUNCTIONS ======
 
