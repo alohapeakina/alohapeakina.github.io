@@ -117,7 +117,6 @@ async function getZip() {
         return;
     }
 
-
     let url = `https://csumb.space/api/cityInfoAPI.php?zip=${zipCode}`;
     let response = await fetch(url);
     let data = await response.json();
