@@ -91,26 +91,34 @@
                 <label for="username" class="col-sm-4 col-form-label">Desired Username</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="username" placeholder="Username">
-                    <div class="invalid-feedback" id="usernameError"></span>
+                    <div class="invalid-feedback" id="usernameError">Username is taken</div>
+                    <div class="valid-feedback" id="usernameSuccess">Username available!</div>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="password" class="col-sm-4 col-form-label">Password</label>
-                <div class="col-sm-8 d-flex align-items-center">
-                    <input type="password" class="form-control me-2 flex-shrink-0" id="password" placeholder="Password">
-                    <span id="suggestedPwd" class="text-nowrap"></span>
+                <div class="col-sm-8">
+                    <div class="d-flex align-items-center mb-1">
+                        <input type="password" class="form-control me-2 flex-shrink-0" id="password" placeholder="Password">
+                        <span id="suggestedPwd" class="text-nowrap"></span>
+                    </div>
+                        <div class="invalid-feedback" id="passwordError">Password must be 6 characters</div>
                 </div>
             </div>
             <div class="row">
                 <label for="passwordCheck" class="col-sm-4 col-form-label">Type Password Again</label>
                 <div class="col-sm-8">
                     <input type="password" class="form-control" id="passwordCheck">
-                    <div class="invalid-feedback" id="passwordError"></span>
+                    <div class="invalid-feedback" id="passwordCheckError">Passwords do not match</div>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="submitBtn">Sign up!</button>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary" id="submitBtn">Sign up!</button>
+            </div>
+        </div>
 
     </form>
     <footer>

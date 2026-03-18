@@ -12,7 +12,7 @@ zipCodeField.addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 usernameField.addEventListener("change", checkUsername);
 passwordField.addEventListener("click",suggestPassword);
-window.addEventListener("load",getStates);
+window.addEventListener("load",getStateList);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
 });
@@ -20,7 +20,7 @@ document.querySelector("#signupForm").addEventListener("submit",function(event) 
 //Functions
 
 //Displays list of states from Web API
-async function getStates() {
+async function getStateList() {
     let url = `https://csumb.space/api/allStatesAPI.php`;
     let response = await fetch(url);
     let data = await response.json();
@@ -62,11 +62,11 @@ async function displayCounties() {
 //Checks if username is available
 async function checkUsername() {
     let username = usernameField.value;
-    let usernameError = document.querySelector("#usernameError");
     
     // Clears error field if no data to check
     if (username.length === 0) {
-        usernameError.innerHTML = "";
+        usernameField.classList.remove("is-valid");
+        usernameField.classList.remove("is-invalid");
         return;
     }
     
@@ -76,13 +76,13 @@ async function checkUsername() {
     console.log(data);
 
     if (data.available) {
-        usernameError.innerHTML = "Username available!";
-        usernameError.style.color = "green";
+        usernameField.classList.remove("is-invalid");
+        usernameField.classList.add("is-valid");
         usernameAvailable = true;
     }
     else {
-        usernameError.innerHTML = "Username taken";
-        usernameError.style.color = "red";
+        usernameField.classList.remove("is-valid");
+        usernameField.classList.add("is-invalid");
         usernameAvailable = false;
     }
 }
@@ -125,12 +125,12 @@ function validateForm(e) {
     let username = usernameField.value;
     let password = passwordField.value;
     let passwordCheck = passwordCheckField.value;
-    let usernameError = document.querySelector("#usernameError");
-    let passwordError = document.querySelector("#passwordError");
 
     // Clear previous messages
-    usernameError.innerHTML = "";
-    passwordError.innerHTML = "";
+    usernameField.classList.remove("is-invalid","is-valid");
+    passwordField.classList.remove("is-invalid","is-valid");
+    passwordCheckField.classList.remove("is-invalid","is-valid");
+
 
     // Validates zip code
     if (validZip == false) {
@@ -138,26 +138,19 @@ function validateForm(e) {
     }
 
     // Validates username
-    if (username.length === 0) {
-        usernameError.innerHTML = "Username Required!";
-        usernameError.style.color = "red";
+    if (username.length === 0 || !usernameAvailable) {
+        usernameField.classList.add("is-invalid");
         isValid = false;
-    } else if (!usernameAvailable) {
-        usernameError.innerHTML = "Username is taken!";
-        usernameError.style.color = "red";
-         isValid = false;
-    }
+    } 
 
     // Validates pasword
     if (password.length < 6) {
-        passwordError.innerHTML = "Password must be at least 6 characters <br>";
-        passwordError.style.color = "red";
+        passwordField.classList.add("is-invalid");
         isValid = false;
     }
 
     if (password !== passwordCheck) {
-        passwordError.innerHTML += "Passwords do not match";
-        passwordError.style.color = "red";
+        passwordCheckField.classList.add("is-invalid");
         isValid = false;
     }
 

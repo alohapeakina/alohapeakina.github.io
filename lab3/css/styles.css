@@ -1,7 +1,12 @@
-/* body {
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
     display: flex;
     flex-direction: column;
-} */
+}
 
 #signupForm h1 {
     text-align: center;
@@ -13,7 +18,11 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    flex: 1;
+    flex-grow: 1;
+}
+
+.is-invalid ~ .invalid-feedback {
+    display:block;
 }
 
 #signupForm .col-sm-4 {
@@ -30,6 +39,7 @@
 #signupForm .form-control, #signupForm .form-select {
     width: 100%;
     max-width: 300px;
+    display: inline-block;
 }
 
 #signupForm .row {
@@ -43,8 +53,8 @@
     vertical-align: middle;
 }
 
-
 footer {
-    margin-bottom: 10px;
     text-align: center;
+    padding: 1rem 0;
+    width: 100%;
 }
