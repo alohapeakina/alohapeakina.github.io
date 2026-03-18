@@ -10,7 +10,6 @@ body {
 
 #signupForm h1 {
     text-align: center;
-    margin: 0 auto;
     padding-bottom: 15px;
 }
 
@@ -32,24 +31,21 @@ body {
     font-weight: bold;
 }
 
-#signupForm .form-control, #signupForm .form-select {
-    width: 100%;
-    max-width: 300px;
-    display: inline-block;
-}
-
 #signupForm .row {
     margin-bottom: 1.1rem;
-    min-height: 30px;
+}
+
+.invalid-feedback:empty, .valid-feedback:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
 }
 
 #usernameError, #suggestedPwd, #passwordError {
     font-size: 0.85rem;
-    vertical-align: middle;
 }
 
 footer {
     text-align: center;
     padding: 1rem 0;
-    width: 100%;
 }

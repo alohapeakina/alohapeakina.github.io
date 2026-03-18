@@ -1,4 +1,4 @@
-//Global variables
+// ====== GLOBAL VARIABLES ======
 let usernameAvailable = false;
 let validZip = false;
 const REQUIRED_PWD_LENGTH = 6;
@@ -9,7 +9,7 @@ const usernameField = document.querySelector("#username");
 const passwordCheckField = document.querySelector("#passwordCheck");
 const zipCodeField = document.querySelector("#zip");
 
-//Event Listeners
+// ====== EVENT LISTENERS ======
 zipCodeField.addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
 usernameField.addEventListener("change", checkUsername);
@@ -19,7 +19,7 @@ document.querySelector("#signupForm").addEventListener("submit",function(event) 
     validateForm(event);
 });
 
-//Functions
+// ====== FUNCTIONS ======
 
 //Displays list of states from Web API
 async function getStateList() {
@@ -143,6 +143,8 @@ async function getZip() {
 function validateForm(e) {
     e.preventDefault(); // Defaults to preventing submission unless all checks are passed
     let isValid = true;
+    let fName = fNameField.value;
+    let lName = lNameField.value;
     let username = usernameField.value;
     let password = passwordField.value;
     let passwordCheck = passwordCheckField.value;
@@ -153,6 +155,25 @@ function validateForm(e) {
     passwordField.classList.remove("is-invalid","is-valid");
     passwordCheckField.classList.remove("is-invalid","is-valid");
     zipCodeField.classList.remove("is-invalid");
+
+    // Verifies name is not empty
+    if (fName === "") {
+        fNameField.classList.remove("is-valid");
+        fNameField.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        fNameField.classList.remove("is-invalid");
+        fNameField.classList.add("is-valid");
+    }
+
+    if (lName === "") {
+        lNameField.classList.remove("is-valid");
+        lNameField.classList.add("is-invalid");
+        isValid = false;
+    } else {
+        lNameField.classList.remove("is-invalid");
+        lNameField.classList.add("is-valid");
+    }
 
 
     // Zip code validation
