@@ -24,7 +24,6 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 30, 0.4);
 }
 
-
 #signupForm header {
     background-color: #6c757d;
     margin: -50px -60px 30px -60px;
@@ -104,10 +103,8 @@ footer {
     padding: 20px;    
 }
 
-.sucess-icon {
-    font-size: 4 rem;
-    color: #198754;
-    margin-bottom: 1rem;
+.success-icon {
+    margin-bottom: 1.3rem;
 }
 
 #success-card h1 {
