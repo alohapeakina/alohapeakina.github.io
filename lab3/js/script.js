@@ -12,7 +12,7 @@ const zipCodeField = document.querySelector("#zip");
 // ====== EVENT LISTENERS ======
 zipCodeField.addEventListener("change",displayCity);
 document.querySelector("#state").addEventListener("change",displayCounties);
-usernameField.addEventListener("change", checkUsername);
+usernameField.addEventListener("input", checkUsername);
 passwordField.addEventListener("click",suggestPassword);
 document.querySelector("#signupForm").addEventListener("submit",function(event) {
     validateForm(event);
