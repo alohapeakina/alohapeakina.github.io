@@ -74,7 +74,6 @@ async function getCatImage() {
     
 }
 
-// TODO: Add loading text when facts are loading
 async function getRandomDogFacts(limit) {
 
     const factField = document.getElementById("dog-fact-list");
@@ -87,7 +86,7 @@ async function getRandomDogFacts(limit) {
         inputField.classList.remove("is-invalid");
     }
 
-
+    // Clears placeholder text and previous facts. TODO: Experiment with map to allow for "loading" text
     factField.innerHTML = "";
     
     try {
