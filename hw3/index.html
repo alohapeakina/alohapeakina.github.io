@@ -8,17 +8,56 @@
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
-    <!-- <link href="./css/styles.css" rel="stylesheet"> -->
+    <link href="./css/styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>HW3 - Web API Placeholder</h1>
     </header>
 
-    <p id="fact-text">Click button to see a dog fact</p>
-    <button id="showFact" onclick="fetchRandomFact()">Get Random Fact</button>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Dog Facts</h3>
+            <label for="dogFactLimit">Number of facts</label>
+            <input type="number" id="dogFactLimit" placeholder="Enter number">
+            <div class="invalid-feedback">Number must be between 1-5!</div>
+            <button class="btn btn-primary w-20" id="randomDogFact">Random Dog Fact</button>
+        </div>
+        <ul id="dog-fact-list">Click the button to get up to 5 dog facts!</ul>
+    </div>
 
-    
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Cat Facts</h3>
+            <label for="catFactLimit">Number of facts</label>
+            <input type="number" id="catFactLimit" placeholder="Enter number">
+            <div class="invalid-feedback">Number must be between 1-5!</div>
+            <button class="btn btn-primary w-20" id="randomCatFacts">Get Facts</button>
+        </div>
+        <ul id="cat-fact-list">Click the button to get up to 5 cat facts!</ul>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn btn-primary w-20" id="getDogImage">Random Dog Picture</button>
+            <p id="breedCaption" class="breed-caption"></p>
+        </div>
+        <div class="col-sm-8">
+            <img id="dogImage" alt="Image of dog">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn btn-primary w-20" id="getCatImage">Random Cat Picture</button>
+        </div>
+        <div class="col-sm-8">
+            <img id="catImage" alt="Image of cat">
+        </div>
+    </div>
+
 
 
     <footer>

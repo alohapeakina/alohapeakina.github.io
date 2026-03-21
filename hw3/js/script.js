@@ -1,40 +1,139 @@
+// ====== API INFO ======
 const API_KEY = "live_graOEO8qMpWq0zl5kBf1uCipTncPfv0auX0H3oPmwgEyXZhndKkP9wU14KfJ4W64";
 const BASE_URL = "https://api.thedogapi.com/v1";
 
+// ====== EVENT LISTENERS ======
+document.getElementById("randomDogFact").addEventListener("click", () => {
+    const limit = document.getElementById("dogFactLimit").value;
+    getRandomDogFacts(limit);
+});
+document.getElementById("randomCatFacts").addEventListener("click", () => {
+    const limit = document.getElementById("catFactLimit").value;
+    getRandomCatFacts(limit);
+});
+document.getElementById("getDogImage").addEventListener("click",getDogImage);
+document.getElementById("getCatImage").addEventListener("click",getCatImage);
+
+
+
+//====== FUNCTIONS ======
+
 async function dogApiRequest(endpoint) {
-    const response = await fetch(`${BASE_URL}${endpoint}`,
-        {headers: { "x-api-key": API_KEY}});
-    return await response.json();
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+        headers: {
+            "x-api-key": API_KEY
+        }
+    });
+    return await response;
 }
 
-//Full list of all dog breeds
-async function fetchBreeds() {
+async function getBreeds() {
     return await dogApiRequest("/breeds");
 }
 
-// Random dog photos
-async function fetchDogImage(breedId) {
-    return await dogApiRequest(`/images/search?breed_ids=${breedId}`);
+
+async function getDogImage() {
+    const dogImgElement = document.getElementById("dogImage");
+    const dogCaption = document.getElementById("breedCaption");
+
+    try {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random");
+        const json = await response.json();
+    
+        if (json.status === "success") {
+            dogImgElement.src = json.message;
+
+            const responseSplit = json.message.split("/");
+            const breedName = responseSplit[4].replace("-", " ");
+
+            dogCaption.innerText= `Breed: ${breedName}`;
+
+        } else {
+            console.error("Failed to fetch image");
+        }
+    } catch(error) {
+        console.error("Network error: ", error);
+    }
+
 }
 
-async function fetchDogByBreed(name) {
-    return await dogApiRequest(`/breeds/search?q=${name}`);
+async function getCatImage() {
+
+    const catImgElement = document.getElementById("catImage");
+
+    // Uses JSON format as simple implementation to ensure a new image is generated every time the function is called
+    try {
+        const response = await fetch("https://cataas.com/cat?position=center&width=300&json=true");
+        const json = await response.json();
+
+        catImgElement.src = json.url;
+    
+    } catch(error) {
+        console.error("Network error: ", error);
+    }
+    
 }
 
-// Uses free API that doesn't need a key
-async function fetchRandomFact() {
-    const factField = document.getElementById("fact-text");
+// TODO: Add loading text when facts are loading
+async function getRandomDogFacts(limit) {
+
+    const factField = document.getElementById("dog-fact-list");
+    const inputField = document.getElementById("dogFactLimit");
+
+    if (limit <= 0 || limit > 5 || !limit) {
+        inputField.classList.add("is-invalid");
+        return;
+    } else {
+        inputField.classList.remove("is-invalid");
+    }
+
+
+    factField.innerHTML = "";
     
     try {
-    const response = await fetch("https://dogapi.dog/api/v2/facts?limit=1");
-    const json = await response.json();
-    const factBody = json.data[0].attributes.body;
+        const response = await fetch(`https://dogapi.dog/api/v2/facts?limit=${limit}`);
+        const json = await response.json();
 
-    factField.textContent = factBody;
+        for (let i = 0; i < limit; i++) {
+            factField.innerHTML += `<li>${json.data[i].attributes.body}</li>`;
+        }
 
 
-  } catch (error) {
-    console.error("Fetch error:", error);
-    factField.textContent = "[Failed to get fact]";
-  }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        factField.textContent = "[Failed to get fact]";
+    }
+}
+
+//TODO: Add error validation
+async function getRandomCatFacts(limit) {
+
+    
+    const factField = document.getElementById("cat-fact-list");
+    const inputField = document.getElementById("catFactLimit");
+    
+    if (limit <= 0 || limit > 5 || !limit) {
+        inputField.classList.add("is-invalid");
+        return;
+    } else {
+        inputField.classList.remove("is-invalid");
+    }
+
+    // Clears previous facts and prepares for new ones
+    factField.innerHTML = "<li>Preparing facts!</li>";
+    
+    try {
+        const response = await fetch(`https://catfact.ninja/facts?limit=${limit}`);
+        const json = await response.json();
+        const factArray = json.data;
+
+        const factList = factArray.map(item => `<li>${item.fact}</li>`).join("");
+
+        factField.innerHTML = factList;
+
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        factField.innerHTML = "<li>[Failed to get facts]</li>";
+    }
 }

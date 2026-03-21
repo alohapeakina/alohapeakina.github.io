@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+
+.temperament-label {
+    text-transform: capitalize;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+#temperamentGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 5px;
+    max-height: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#randomFact:active {
+    transform: translateY(2px);
+    border-bottom: 2px solid #1A237E;
+}
+
+#dogImage {
+    max-width: 400px;
+    height: 300px;
+    display: block;
+    margin-top: 10px;
+    min-height: 200px;
+}
+
+.breed-caption {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#catImage {
+    max-width: 400px;
+    /* height: 300px; */
+    display: block;
+    margin-top: 10px;
+    min-height: 200px;
+}
