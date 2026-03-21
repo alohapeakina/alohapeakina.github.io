@@ -89,7 +89,7 @@ footer {
     width: 90%;
     padding: 50px 60px;
     margin: 80px auto;
-    border-radius 12px;
+    border-radius: 12px;
     border-top: 6px solid #d59311;
     box-shadow: 0 10px 25px rgba(0, 0, 30, 0.4);
     overflow: hidden;
