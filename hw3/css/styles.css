@@ -1,7 +1,12 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
+    padding: 20px;
 }
 
 .temperament-label {
@@ -44,4 +49,10 @@ body {
     display: block;
     margin-top: 10px;
     min-height: 200px;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding-bottom: 10px;
 }
