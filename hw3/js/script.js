@@ -1,6 +1,4 @@
 // ====== CONSTANTS ======
-const API_KEY = "live_graOEO8qMpWq0zl5kBf1uCipTncPfv0auX0H3oPmwgEyXZhndKkP9wU14KfJ4W64";
-const BASE_URL = "https://api.thedogapi.com/v1";
 const dogSection = document.getElementById("dogSection");
 const catSection = document.getElementById("catSection");
 const woofToggle = document.getElementById("woofMode");
@@ -41,22 +39,8 @@ function switchMode() {
     }
 }
 
-async function dogApiRequest(endpoint) {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
-        headers: {
-            "x-api-key": API_KEY
-        }
-    });
-    return await response;
-}
-
-async function getBreeds() {
-    return await dogApiRequest("/breeds");
-}
-
 async function getDogImage() {
     const dogImgElement = document.getElementById("dogImage");
-    const dogCaption = document.getElementById("breedCaption");
 
     try {
         const response = await fetch("https://dog.ceo/api/breeds/image/random");
@@ -77,7 +61,6 @@ async function getDogImage() {
 async function getCatImage() {
 
     const catImgElement = document.getElementById("catImage");
-    const catCaption = document.getElementById("catBreed");
 
     // Uses JSON format as simple implementation to ensure a new image is generated every time the function is called
     try {
