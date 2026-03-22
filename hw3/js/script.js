@@ -64,7 +64,7 @@ async function getCatImage() {
 
     // Uses JSON format as simple implementation to ensure a new image is generated every time the function is called
     try {
-        const response = await fetch("https://cataas.com/cat?position=center&width=300&json=true");
+        const response = await fetch("https://cataas.com/cat?position=center&json=true");
         const json = await response.json();
 
         catImgElement.src = json.url;
