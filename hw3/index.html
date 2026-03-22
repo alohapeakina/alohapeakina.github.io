@@ -31,11 +31,14 @@
                 <div class="col-md-5">
                     <div class="card h-100 shadow-sm border-0 p-4 animal-card">
                         <div class="card-body d-flex flex-column">
-                            <h2>Did you know?</h2>
+                            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                                <img src="img/dog-face.svg" alt="Dog Icon" class="animal-icon">
+                                <h2 class="mb-0">Did you know?</h2>
+                            </div>
                             <p class="text-muted small">Enter a number and click the button!</p>
 
-                            <div class="input-group mb-3">
-                                <input type="number" id="dogFactLimit" class="form-control" placeholder="Enter number 1-5">
+                            <div class="fact-controls">
+                                <input type="number" id="dogFactLimit" class="form-control" placeholder="Enter number">
                                 <div class="invalid-feedback">Number must be between 1-5!</div>
                                 <button class="btn btn-primary mb-3" id="randomDogFacts">Get Facts</button>
                             </div>
@@ -65,13 +68,17 @@
                 <div class="col-md-5">
                     <div class="card h-100 shadow-sm border-0 p-4 animal-card">
                         <div class="card-body d-flex flex-column">
-                            <h2>Did you know?</h2>
+                            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                                <img src="img/cat-face.svg" alt="Cat Icon" class="animal-icon">
+                                <h2>Did you know?</h2>
+                            </div>
+
                             <p class="text-muted small">Enter a number and click the button!</p>
 
-                            <div class="input-group mb-3">
-                                <input type="number" id="catFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
+                            <div class="fact-controls">
+                                <input type="number" id="catFactLimit" class="form-control" placeholder="Enter number">
                                 <div class="invalid-feedback">Number must be between 1-5!</div>
-                                <button class="btn btn-primary mb-3" id="randomCatFacts">Get Cat Facts</button>
+                                <button class="btn btn-primary mb-3" id="randomCatFacts">Get Facts</button>
                             </div>
                             <div class="fact-area">
                                 <ul id="cat-fact-list" class="text-start">
@@ -84,7 +91,7 @@
 
                 <div class="col-md-5">
                     <div class="card h-100 shadow-sm border-0 p-4 animal-card d-flex flex-column align-items-center">
-                        <button class="btn btn-primary mb-2" id="getCatImage">Random Cat Picture</button>
+                        <button class="btn btn-primary mb-2" id="getCatImage">Click for picture!</button>
                         <div class="img-container">
                             <img id="catImage" class="img-fluid rounded shadow" alt="Image of cat">
                         </div>

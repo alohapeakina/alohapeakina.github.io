@@ -104,12 +104,13 @@ async function getRandomDogFacts(limit) {
         inputField.classList.remove("is-invalid");
     }
 
-    // Clears placeholder text and previous facts. TODO: Experiment with map to allow for "loading" text
-    factField.innerHTML = "";
+    factField.innerHTML = "Fetchest goodest bois"; // Flavor text while retrieving API info
     
     try {
         const response = await fetch(`https://dogapi.dog/api/v2/facts?limit=${limit}`);
         const json = await response.json();
+
+        factField.innerHTML = ""; // Clears placeholder text
 
         for (let i = 0; i < limit; i++) {
             factField.innerHTML += `<li>${json.data[i].attributes.body}</li>`;
