@@ -11,9 +11,20 @@ body {
 }
 
 header {
+    background: white;
     text-align: center;
-    margin: 10px;
-    padding-bottom: 10px;
+    /* margin: 10px; */
+    margin: -20px -20px 30px -20px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 6px #0000000d;
+    border-bottom: 3px solid transparent;
+    /* border-bottom: 3px; */
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0;
 }
 
 footer {
@@ -27,6 +38,10 @@ body.theme-dog {
     background-color: #e3f2fd;
 }
 
+body.theme-dog header {
+    border-color: #0d47a1;
+}
+
 body.theme-dog h1, body.theme-dog h2 {
     color: #0d47a1;
 }
@@ -34,6 +49,10 @@ body.theme-dog h1, body.theme-dog h2 {
 /* Cat Themes (Orange) */
 body.theme-cat {
     background-color: #fff3e0;
+}
+
+body.theme-cat header {
+    border-color: #e65100;
 }
 
 body.theme-cat h1, body.theme-cat h2 {
@@ -85,6 +104,18 @@ body.theme-cat .btn-primary {
 /* Fact and image layouts */
 #randomCatFacts, #randomDogFacts {
     margin-bottom: 15px;
+}
+
+ul#dog-fact-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    list-style-type: "🦴 ";
+}
+
+ul#cat-fact-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    list-style-type: "🐾 ";
 }
 
 #randomDogFacts:active, #randomCatFacts:active {
