@@ -20,15 +20,24 @@ document.getElementById("getCatImage").addEventListener("click",getCatImage);
 woofToggle.addEventListener("change",switchMode);
 meowToggle.addEventListener("change",switchMode);
 
+switchMode(); // This is called here to ensure the toggle maintains state with the page
+
 //====== FUNCTIONS ======
 
 function switchMode() {
     if (woofToggle.checked) {
         dogSection.classList.remove("d-none");
         catSection.classList.add("d-none");
-    } else {
+
+        document.body.classList.add("theme-dog");
+        document.body.classList.remove("theme-cat");
+
+    } else if (meowToggle.checked) {
         dogSection.classList.add("d-none");
         catSection.classList.remove("d-none");
+
+        document.body.classList.add("theme-cat");
+        document.body.classList.remove("theme-dog");
     }
 }
 
@@ -112,7 +121,6 @@ async function getRandomDogFacts(limit) {
     }
 }
 
-//TODO: Add error validation
 async function getRandomCatFacts(limit) {
 
     const factField = document.getElementById("cat-fact-list");
@@ -126,14 +134,22 @@ async function getRandomCatFacts(limit) {
     }
 
     // Clears previous facts and prepares for new ones
-    factField.innerHTML = "<li>Preparing facts!</li>";
+    factField.innerHTML = "<li>Gathering fresh cat wisdom...</li>";
     
     try {
-        const response = await fetch(`https://catfact.ninja/facts?limit=${limit}`);
-        const json = await response.json();
-        const factArray = json.data;
+        const responses = [];
 
-        const factList = factArray.map(item => `<li>${item.fact}</li>`).join("");
+        for (let i = 0; i < limit; i++) {
+            responses.push(fetch("https://catfact.ninja/fact").then(res => res.json()));
+        }
+
+        const results = await Promise.all(responses);
+
+        // const response = await fetch(`https://catfact.ninja/facts?limit=${limit}`);
+        // const json = await response.json();
+        // const factArray = json.data;
+
+        const factList = results.map(item => `<li>${item.fact}</li>`).join("");
 
         factField.innerHTML = factList;
 

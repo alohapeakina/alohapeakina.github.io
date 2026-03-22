@@ -5,39 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mood Booster</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Mood Booster</h1>
+        <p>Facts and photos of our furry friends to brighten your day!</p>
     </header>
 
     <div class="container text-center">
 
         <div class="btn-group mb-4" role="group">
             <input type="radio" class="btn-check" name="modeToggle" id="woofMode" checked>
-            <label class="btn btn-outline-primary" for="woofMode">Woof Mode</label>
+            <label class="btn" for="woofMode">Woof Mode</label>
 
             <input type="radio" class="btn-check" name="modeToggle" id="meowMode">
-            <label class="btn btn-outline-primary" for="meowMode">Meow Mode</label>
+            <label class="btn" for="meowMode">Meow Mode</label>
         </div>
         
         <div id="dogSection">
             <div class="row justify-content-center">
                 <div class="col-md-6 border-end">
-                    <h3>Dog Facts</h3>
+                    <h2>Dog Facts</h2>
                     <input type="number" id="dogFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
                     <div class="invalid-feedback">Number must be between 1-5!</div>
                     <button class="btn btn-primary mb-3" id="randomDogFacts">Get Dog Facts</button>
                     <ul id="dog-fact-list" class="text-start">Click the button to get up to 5 dog facts!</ul>
                 </div>
                 
-                <div class="col-md-6">
-                    <button class="btn btn-success mb-2" id="getDogImage">Random Dog Picture</button>
-                    <p id="breedCaption" class="breed-caption"></p>
+                <div class="col-md-6 d-flex flex-column align-items-center">
+                    <button class="btn btn-primary mb-2" id="getDogImage">Random Dog Picture</button>
                     <img id="dogImage" class="img-fluid rounded shadow" alt="Image of dog">
                 </div>
             </div>
@@ -46,16 +46,15 @@
         <div id="catSection" class="d-none">
             <div class="row justify-content-center">
                 <div class="col-md-6 border-end">
-                    <h3>Cat Facts</h3>
+                    <h2>Cat Facts</h2>
                     <input type="number" id="catFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
                     <div class="invalid-feedback">Number must be between 1-5!</div>
                     <button class="btn btn-primary mb-3" id="randomCatFacts">Get Cat Facts</button>
                     <ul id="cat-fact-list" class="text-start">Click the button to get up to 5 cat facts!</ul>
                 </div>
 
-                <div class="col-md-6">
-                    <button class="btn btn-success mb-2" id="getCatImage">Random Cat Picture</button>
-                    <p id="catBreed" class="breed-caption"></p>
+                <div class="col-md-6 d-flex flex-column align-items-center">
+                    <button class="btn btn-primary mb-2" id="getCatImage">Random Cat Picture</button>
                     <img id="catImage" class="img-fluid rounded shadow" alt="Image of cat">
                 </div>
 
