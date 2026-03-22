@@ -144,11 +144,6 @@ async function getRandomCatFacts(limit) {
         }
 
         const results = await Promise.all(responses);
-
-        // const response = await fetch(`https://catfact.ninja/facts?limit=${limit}`);
-        // const json = await response.json();
-        // const factArray = json.data;
-
         const factList = results.map(item => `<li>${item.fact}</li>`).join("");
 
         factField.innerHTML = factList;
