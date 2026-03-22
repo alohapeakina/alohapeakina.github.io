@@ -23,9 +23,13 @@ switchMode(); // This is called here to ensure the toggle maintains state with t
 //====== FUNCTIONS ======
 
 function switchMode() {
-    // Clears fact number input when switching modes
+    // Clears fact input and resets placeholders when switching modes
     document.getElementById("dogFactLimit").value = "";
     document.getElementById("catFactLimit").value = "";
+    document.getElementById("dog-fact-list").innerHTML = 
+        '<li class="fact-placeholder">Click the button to get up to 5 dog facts!</li>';
+    document.getElementById("cat-fact-list").innerHTML = 
+        '<li class="fact-placeholder">Click the button to get up to 5 cat facts!</li>';
 
     if (woofToggle.checked) {
         dogSection.classList.remove("d-none");
