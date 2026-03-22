@@ -27,41 +27,54 @@
         </div>
         
         <div id="dogSection">
-            <div class="row justify-content-center">
-                <div class="col-md-6 border-end">
-                    <h2>Dog Facts</h2>
-                    <input type="number" id="dogFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
-                    <div class="invalid-feedback">Number must be between 1-5!</div>
-                    <button class="btn btn-primary mb-3" id="randomDogFacts">Get Dog Facts</button>
-                    <ul id="dog-fact-list" class="text-start">Click the button to get up to 5 dog facts!</ul>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="card h-100 shadow-sm border-0 p-4">
+                        <h2>Did you know?</h2>
+                        <div class="input-group mb-3">
+                            <input type="number" id="dogFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
+                            <div class="invalid-feedback">Number must be between 1-5!</div>
+                            <button class="btn btn-primary mb-3" id="randomDogFacts">Get Dog Facts</button>
+                            <ul id="dog-fact-list" class="text-start">Click the button to get up to 5 dog facts!</ul>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="col-md-6 d-flex flex-column align-items-center">
-                    <button class="btn btn-primary mb-2" id="getDogImage">Random Dog Picture</button>
-                    <img id="dogImage" class="img-fluid rounded shadow" alt="Image of dog">
+                <div class="col-md-5">
+                    <div class="card h-100 shadow-sm border-0 p-4 d-flex flex-column align-items-center">
+                        <button class="btn btn-primary mb-2" id="getDogImage">Click for picture!</button>
+                        <div class="img-container">
+                            <img id="dogImage" class="img-fluid rounded shadow" alt="Image of dog">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="catSection" class="d-none">
-            <div class="row justify-content-center">
-                <div class="col-md-6 border-end">
-                    <h2>Cat Facts</h2>
-                    <input type="number" id="catFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
-                    <div class="invalid-feedback">Number must be between 1-5!</div>
-                    <button class="btn btn-primary mb-3" id="randomCatFacts">Get Cat Facts</button>
-                    <ul id="cat-fact-list" class="text-start">Click the button to get up to 5 cat facts!</ul>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-5">
+                    <div class="card h-100 shadow-sm border-0 p-4">
+                        <h2>Did you know?</h2>
+                        <div class="input-group mb-3">
+                            <input type="number" id="catFactLimit" class="form-control mb-2" placeholder="Enter number 1-5">
+                            <div class="invalid-feedback">Number must be between 1-5!</div>
+                            <button class="btn btn-primary mb-3" id="randomCatFacts">Get Cat Facts</button>
+                            <ul id="cat-fact-list" class="text-start">Click the button to get up to 5 cat facts!</ul>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-6 d-flex flex-column align-items-center">
-                    <button class="btn btn-primary mb-2" id="getCatImage">Random Cat Picture</button>
-                    <img id="catImage" class="img-fluid rounded shadow" alt="Image of cat">
+                <div class="col-md-5">
+                    <div class="card h-100 shadow-sm border-0 p-4 d-flex flex-column align-items-center">
+                        <button class="btn btn-primary mb-2" id="getCatImage">Random Cat Picture</button>
+                        <div class="img-container">
+                            <img id="catImage" class="img-fluid rounded shadow" alt="Image of cat">
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-            
 
     <footer>
         <hr>
