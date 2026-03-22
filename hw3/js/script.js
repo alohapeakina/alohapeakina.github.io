@@ -1,9 +1,13 @@
-// ====== API INFO ======
+// ====== CONSTANTS ======
 const API_KEY = "live_graOEO8qMpWq0zl5kBf1uCipTncPfv0auX0H3oPmwgEyXZhndKkP9wU14KfJ4W64";
 const BASE_URL = "https://api.thedogapi.com/v1";
+const dogSection = document.getElementById("dogSection");
+const catSection = document.getElementById("catSection");
+const woofToggle = document.getElementById("woofMode");
+const meowToggle = document.getElementById("meowMode");
 
 // ====== EVENT LISTENERS ======
-document.getElementById("randomDogFact").addEventListener("click", () => {
+document.getElementById("randomDogFacts").addEventListener("click", () => {
     const limit = document.getElementById("dogFactLimit").value;
     getRandomDogFacts(limit);
 });
@@ -13,10 +17,20 @@ document.getElementById("randomCatFacts").addEventListener("click", () => {
 });
 document.getElementById("getDogImage").addEventListener("click",getDogImage);
 document.getElementById("getCatImage").addEventListener("click",getCatImage);
-
-
+woofToggle.addEventListener("change",switchMode);
+meowToggle.addEventListener("change",switchMode);
 
 //====== FUNCTIONS ======
+
+function switchMode() {
+    if (woofToggle.checked) {
+        dogSection.classList.remove("d-none");
+        catSection.classList.add("d-none");
+    } else {
+        dogSection.classList.add("d-none");
+        catSection.classList.remove("d-none");
+    }
+}
 
 async function dogApiRequest(endpoint) {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
@@ -31,7 +45,6 @@ async function getBreeds() {
     return await dogApiRequest("/breeds");
 }
 
-
 async function getDogImage() {
     const dogImgElement = document.getElementById("dogImage");
     const dogCaption = document.getElementById("breedCaption");
@@ -42,11 +55,7 @@ async function getDogImage() {
     
         if (json.status === "success") {
             dogImgElement.src = json.message;
-
-            const responseSplit = json.message.split("/");
-            const breedName = responseSplit[4].replace("-", " ");
-
-            dogCaption.innerText= `Breed: ${breedName}`;
+            dogImgElement.style.display = "block";
 
         } else {
             console.error("Failed to fetch image");
@@ -54,12 +63,12 @@ async function getDogImage() {
     } catch(error) {
         console.error("Network error: ", error);
     }
-
 }
 
 async function getCatImage() {
 
     const catImgElement = document.getElementById("catImage");
+    const catCaption = document.getElementById("catBreed");
 
     // Uses JSON format as simple implementation to ensure a new image is generated every time the function is called
     try {
@@ -67,11 +76,11 @@ async function getCatImage() {
         const json = await response.json();
 
         catImgElement.src = json.url;
+        catImgElement.style.display = "block";
     
     } catch(error) {
         console.error("Network error: ", error);
     }
-    
 }
 
 async function getRandomDogFacts(limit) {
@@ -97,7 +106,6 @@ async function getRandomDogFacts(limit) {
             factField.innerHTML += `<li>${json.data[i].attributes.body}</li>`;
         }
 
-
     } catch (error) {
         console.error("Fetch error:", error);
         factField.textContent = "[Failed to get fact]";
@@ -107,7 +115,6 @@ async function getRandomDogFacts(limit) {
 //TODO: Add error validation
 async function getRandomCatFacts(limit) {
 
-    
     const factField = document.getElementById("cat-fact-list");
     const inputField = document.getElementById("catFactLimit");
     
@@ -129,7 +136,6 @@ async function getRandomCatFacts(limit) {
         const factList = factArray.map(item => `<li>${item.fact}</li>`).join("");
 
         factField.innerHTML = factList;
-
 
     } catch (error) {
         console.error("Fetch error:", error);
