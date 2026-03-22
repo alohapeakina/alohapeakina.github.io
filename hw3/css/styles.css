@@ -104,19 +104,12 @@ body.theme-cat .btn-primary {
 }
 
 /* Fact and image layouts */
-.input-group {
-    flex-wrap: nowrap;
-}
-
-.input-group .form-control {
-    flex: 0 1 80px;
-}
 
 .animal-card {
     border-top: 6px solid transparent !important;
-    border-left: 2px solid rgba(0,0,0,0.1) !important;
-    border-right: 2px solid rgba(0,0,0,0.1) !important;
-    border-bottom: 2px solid rgba(0,0,0,0.1) !important;
+    border-left: 2px solid #0000001a !important;
+    border-right: 2px solid #0000001a !important;
+    border-bottom: 2px solid #0000001a !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.5s ease;
     border-radius: 12px;
     background-color: white;
@@ -171,13 +164,13 @@ body.theme-cat .animal-card {
 
 ul#dog-fact-list li {
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid #0000001a;
     list-style-type: "🦴 ";
 }
 
 ul#cat-fact-list li {
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid #0000001a;
     list-style-type: "🐾 ";
 }
 
